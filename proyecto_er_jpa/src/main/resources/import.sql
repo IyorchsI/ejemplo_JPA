@@ -1,0 +1,1 @@
+--INSERT INTO `usuarios` (`id`, `email`, `estatus`, `fechaRegistro`, `nombre`, `password`, `salario`, `username`) VALUES (NULL, 'juan@unicauca.edu.co', '1', '2022-11-02', 'juan perez', '12345', '50000', 'juanp')
