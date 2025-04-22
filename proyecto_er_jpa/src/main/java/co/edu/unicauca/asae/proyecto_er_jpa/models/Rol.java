@@ -1,5 +1,6 @@
 package co.edu.unicauca.asae.proyecto_er_jpa.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -12,14 +13,12 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name="Roles")
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
 public class Rol {
     @Id
@@ -30,4 +29,7 @@ public class Rol {
     private String rol_asignado;
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "objRol")
     private List<Historico> historicos;
+    public Rol (){
+        this.historicos=new ArrayList<Historico>();
+    }
 }

@@ -1,5 +1,6 @@
 package co.edu.unicauca.asae.proyecto_er_jpa.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -12,14 +13,12 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name = "docentes")
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
 
 public class Docente {
@@ -39,5 +38,10 @@ public class Docente {
     private List<FormatoA> formatosA;
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "objDocente")
     private List<Historico> historicos;
+
+    public Docente (){
+        this.formatosA=new ArrayList<FormatoA>();
+        this.historicos=new ArrayList<Historico>();
+    }
 
 }

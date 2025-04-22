@@ -20,18 +20,16 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
 @Getter
 @Setter
 public class FormatoA {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name= "idFormatoA")
     private Integer id_formato;
     @Column(nullable = false, unique = true)
     private String titulo_formato;
-    @Column(nullable = false, length = 100)
-    private String nombre_director;
     @Column(nullable = false)
     private String objetivo_general;
     @Column(nullable = false)
@@ -39,23 +37,22 @@ public class FormatoA {
     @Column(nullable = false, length = 100)
     private String nombre_estudiante1;
 
-    @OneToOne(cascade = { CascadeType.REMOVE, CascadeType.PERSIST },mappedBy = "objFormatoA")
+    @OneToOne(fetch = FetchType.EAGER,cascade = { CascadeType.REMOVE, CascadeType.PERSIST },mappedBy = "objFormatoA")
     private Estado objEstado;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "objFormatoA")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "objFormatoA")
     private List<Evaluacion> evaluaciones;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST})
     @JoinColumn(name="idfkDocente", nullable = false)
     private Docente objDocente;
 
     public FormatoA(){
         this.evaluaciones=new ArrayList<Evaluacion>();
     }
-    public FormatoA(String titulo_formato, String nombre_director, String objetivo_general, String objetivos_especificos, 
+    public FormatoA(String titulo_formato, String objetivo_general, String objetivos_especificos, 
     String nombre_estudiante1,Estado objEstado, List<Evaluacion> evaluaciones, Docente objDocente){
         this.titulo_formato=titulo_formato;
-        this.nombre_director=nombre_director;
         this.objetivo_general=objetivo_general;
         this.objetivos_especificos=objetivos_especificos;
         this.nombre_estudiante1=nombre_estudiante1;

@@ -12,13 +12,11 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 @Entity
 @Table(name="estados")
 @Getter
-@Setter
-@NoArgsConstructor 
+@Setter 
 @AllArgsConstructor
 public class Estado {
     @Id
@@ -30,6 +28,9 @@ public class Estado {
     @Column(nullable = false)
     private Date fecha_registro_estado;
     @OneToOne
-    @JoinColumn(name = "idFKFormatoA", referencedColumnName = "idFormatoA")
+    @JoinColumn(name = "idFKFormatoA", referencedColumnName = "idFormatoA",unique = true)
     private FormatoA objFormatoA;
+    public Estado (){
+        this.estado_actual="En formulación";
+    }
 }
