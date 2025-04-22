@@ -16,7 +16,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name="Roles")
+@Table(name = "Roles")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -25,11 +25,14 @@ public class Rol {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idRol")
     private Integer id_rol;
+
     @Column(nullable = false, length = 100)
     private String rol_asignado;
+    
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "objRol")
     private List<Historico> historicos;
-    public Rol (){
-        this.historicos=new ArrayList<Historico>();
+
+    public Rol() {
+        this.historicos = new ArrayList<Historico>();
     }
 }

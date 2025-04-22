@@ -19,7 +19,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name= "evaluaciones")
+@Table(name = "evaluaciones")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -27,21 +27,27 @@ import lombok.Setter;
 public class Evaluacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="idEvaluacion")
+    @Column(name = "idEvaluacion")
     private Integer id_evaluacion;
+
     @Column(nullable = false, length = 255)
     private String concepto;
-    @Column(nullable = false, length = 255)
-    private Date fecha_registro;
-    @Column(nullable = false, length = 255)
+
+    @Column(nullable = false)
+    private Date fecha_registro_concepto;
+
+    @Column(nullable = false, length = 100)
     private String nombre_coordinador;
+
     @ManyToOne
-    @JoinColumn(name="idfkFormatoA", nullable = false)
+    @JoinColumn(name = "idfkFormatoA", nullable = false)
     private FormatoA objFormatoA;
+    
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "objEvaluacion")
     private List<Observacion> observaciones;
-    public Evaluacion (){
+
+    public Evaluacion() {
         this.observaciones = new ArrayList<Observacion>();
     }
-    
+
 }
