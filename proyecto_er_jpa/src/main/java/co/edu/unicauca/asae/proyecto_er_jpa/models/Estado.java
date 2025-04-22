@@ -13,24 +13,29 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+
 @Entity
-@Table(name="estados")
+@Table(name = "estados")
 @Getter
-@Setter 
+@Setter
 @AllArgsConstructor
 public class Estado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="idEstado")
+    @Column(name = "idEstado")
     private Integer id_estado;
-    @Column(nullable = false)
+
+    @Column(nullable = false, length = 50)
     private String estado_actual;
+
     @Column(nullable = false)
     private Date fecha_registro_estado;
+
     @OneToOne
-    @JoinColumn(name = "idFKFormatoA", referencedColumnName = "idFormatoA",unique = true)
+    @JoinColumn(name = "idfkFormatoA", referencedColumnName = "idFormatoA", unique = true)
     private FormatoA objFormatoA;
-    public Estado (){
-        this.estado_actual="En formulación";
+
+    public Estado() {
+        this.estado_actual = "En formulación";
     }
 }

@@ -30,17 +30,22 @@ public class Observacion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idObservacion")
     private Integer id_observacion;
+
     @Column(nullable = false)
     private String observacion;
+
     @Column(nullable = false)
     private Date fecha_registro_observacion;
+
     @ManyToOne
-    @JoinColumn(name="idfkEvaluacion", nullable = false)
+    @JoinColumn(name = "idfkEvaluacion", nullable = false)
     private Evaluacion objEvaluacion;
+    
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "observacion_docente", joinColumns = @JoinColumn(name = "idObservacion"), inverseJoinColumns = @JoinColumn(name = "idDocente"))
     private List<Docente> listaDocentes;
-    public Observacion(){
-        this.listaDocentes=new ArrayList<Docente>();
+
+    public Observacion() {
+        this.listaDocentes = new ArrayList<Docente>();
     }
 }

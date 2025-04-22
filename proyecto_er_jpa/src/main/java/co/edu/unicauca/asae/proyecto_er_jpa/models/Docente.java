@@ -24,24 +24,30 @@ import lombok.Setter;
 public class Docente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="idDocente")
+    @Column(name = "idDocente")
     private Integer id_docente;
+
     @Column(nullable = false, length = 100)
     private String nombres_docente;
+
     @Column(nullable = false, length = 100)
     private String apellidos_docente;
+
     @Column(nullable = true, length = 50)
     private String nombre_grupo;
-    @Column(nullable = true, length = 100)
+
+    @Column(nullable = false, unique = true, length = 100)
     private String correo;
+
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "objDocente")
     private List<FormatoA> formatosA;
+    
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "objDocente")
     private List<Historico> historicos;
 
-    public Docente (){
-        this.formatosA=new ArrayList<FormatoA>();
-        this.historicos=new ArrayList<Historico>();
+    public Docente() {
+        this.formatosA = new ArrayList<FormatoA>();
+        this.historicos = new ArrayList<Historico>();
     }
 
 }

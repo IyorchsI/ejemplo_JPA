@@ -27,17 +27,22 @@ public class Historico {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idHistorico")
     private Integer id_historico;
+
     @Column(nullable = true)
     private Boolean activo;
+
     @Column(nullable = true)
     private Date fechaInicio;
+
     @Column(nullable = false)
     private Date fechaFin;
+
     @ManyToOne
-    @JoinColumn(name="idfkRol", nullable = false)
-    private Rol objRol;
-    @ManyToOne
-    @JoinColumn(name="idfkDocente", nullable = false)
+    @JoinColumn(name = "idfkDocente", nullable = false)
     private Docente objDocente;
-    
+
+    @ManyToOne
+    @JoinColumn(name = "idfkRol", nullable = false)
+    private Rol objRol;
+
 }

@@ -26,16 +26,19 @@ public class ProyectoErJpaApplication implements CommandLineRunner {
 	private MiembrosRepository servicioBDMiembro;
 	@Autowired
 	private ObservacionesRepository servicioBDObservacion;
+
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoErJpaApplication.class, args);
 	}
+
 	@Override
 	public void run(String... args) throws Exception {
 		almacenarFormatoPPA();
-		//almacenarSolicitudes();
-		//consultarUsuariosSolicitudes();
+		// almacenarSolicitudes();
+		// consultarUsuariosSolicitudes();
 
 	}
+
 	@Transactional
 	public void almacenarFormatoPPA() {
 		FormatoPPA formatoPPA = new FormatoPPA();
@@ -55,7 +58,7 @@ public class ProyectoErJpaApplication implements CommandLineRunner {
 
 		objFormatoA.setObjEstado(objEstado);
 
-		if(this.servicioBDMiembro.count()>0){
+		if (this.servicioBDMiembro.count() > 0) {
 
 		}
 		Docente objDocente = new Docente();
