@@ -2,6 +2,7 @@ package co.edu.unicauca.asae.proyecto_er_jpa;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -48,6 +49,7 @@ public class ProyectoErJpaApplication implements CommandLineRunner {
 		almacenarObservacion();
 		listarObservacion();
 		listarMiembrosComite();
+		consultarFormatoADocente();
 	}
 
 	@Transactional
@@ -150,6 +152,7 @@ public class ProyectoErJpaApplication implements CommandLineRunner {
 		objObservacion.setListaDocentes(listaDocentes);
 
 		Evaluacion referenciEvaluacion = this.servicioBDEvaluacion.getReferenceById(1);
+		referenciEvaluacion.getObservaciones().add(objObservacion);
 		objObservacion.setObjEvaluacion(referenciEvaluacion);
 
 		this.servicioBDObservacion.save(objObservacion);
@@ -232,6 +235,53 @@ public class ProyectoErJpaApplication implements CommandLineRunner {
 
 	@Transactional(readOnly=true)
 	public void consultarFormatoADocente(){
+		Optional<Docente> optional = this.servicioBDDocente.findById(1);
+		if (optional.isPresent()) {
+			Docente objDocente = optional.get();
+			System.out.println("Formatos A por docente");
+			System.out.println("Docente");
+			System.out.println("id: " + objDocente.getId_docente());
+			System.out.println("Nombres: " + objDocente.getNombres_docente());
+			System.out.println("Apellidos: " + objDocente.getApellidos_docente());
+			System.out.println("Correo: " + objDocente.getCorreo());
+			System.out.println("Grupo: " + objDocente.getNombre_grupo());
+			System.out.println("-------------------");
+			for (FormatoA formatoA : objDocente.getFormatosA()) {
+				System.out.println("Formato A");
+				System.out.println("Id formato: "+formatoA.getId_formato());
+				System.out.println("Estudiante 1: "+ formatoA.getNombre_estudiante1());
+				System.out.println("Objetivo general: "+ formatoA.getObjetivo_general());
+				System.out.println("Objetivos especificos: "+formatoA.getObjetivos_especificos());
+				System.out.println("Titulo de formato: "+formatoA.getTitulo_formato());
+					if(formatoA instanceof FormatoPPA){
+						FormatoPPA formatoPPA = (FormatoPPA)formatoA;
+						System.out.println("Nombre asesor: "+formatoPPA.getNombre_asesor());
+						System.out.println("Ruta carta: "+formatoPPA.getRuta_carta_aceptacion());
+					}else{
+						FormatoTIA formatoTIA = (FormatoTIA)formatoA;
+						System.out.println("Nombre estudiante 2: "+formatoTIA.getNombre_estudiante2());
+					}
+				System.out.println("-------------------");
+				for(Evaluacion evaluacion : formatoA.getEvaluaciones()){
+					System.out.println("evaluacion");
+					System.out.println("Id: " + evaluacion.getId_evaluacion());
+					System.out.println("evaluacion: " + evaluacion.getConcepto());
+					System.out.println("evaluacion: " + evaluacion.getNombre_coordinador());
+					System.out.println("-------------------");
+					for(Observacion observacion: evaluacion.getObservaciones()){
+						System.out.println("Observacion");
+						System.out.println("Id: " + observacion.getId_observacion());
+						System.out.println("Observacion: " + observacion.getObservacion());
+						System.out.println("Fecha de registro: " + observacion.getFecha_registro_observacion());
+						System.out.println("-------------------");
+					}
+					
+				}
+				
+			}
+		} else {
+			System.out.println("docente no encontrado");
+		}
 
 	}
 
