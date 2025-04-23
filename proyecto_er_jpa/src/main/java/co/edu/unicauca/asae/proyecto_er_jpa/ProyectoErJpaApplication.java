@@ -15,10 +15,13 @@ import co.edu.unicauca.asae.proyecto_er_jpa.models.Evaluacion;
 import co.edu.unicauca.asae.proyecto_er_jpa.models.FormatoA;
 import co.edu.unicauca.asae.proyecto_er_jpa.models.FormatoPPA;
 import co.edu.unicauca.asae.proyecto_er_jpa.models.FormatoTIA;
+import co.edu.unicauca.asae.proyecto_er_jpa.models.Historico;
 import co.edu.unicauca.asae.proyecto_er_jpa.models.Observacion;
+import co.edu.unicauca.asae.proyecto_er_jpa.models.Rol;
 import co.edu.unicauca.asae.proyecto_er_jpa.repositories.EvaluacionesRepository;
 import co.edu.unicauca.asae.proyecto_er_jpa.repositories.FormatosRepository;
 import co.edu.unicauca.asae.proyecto_er_jpa.repositories.MiembrosRepository;
+import co.edu.unicauca.asae.proyecto_er_jpa.repositories.DocentesRepository;
 import co.edu.unicauca.asae.proyecto_er_jpa.repositories.ObservacionesRepository;
 
 @SpringBootApplication
@@ -27,11 +30,13 @@ public class ProyectoErJpaApplication implements CommandLineRunner {
 	@Autowired
 	private FormatosRepository servicioBDFormato;
 	@Autowired
-	private MiembrosRepository servicioBDMiembro;
+	private DocentesRepository servicioBDDocente;
 	@Autowired
 	private ObservacionesRepository servicioBDObservacion;
 	@Autowired
 	private EvaluacionesRepository servicioBDEvaluacion;
+	@Autowired
+	private MiembrosRepository servicioBDMiembro;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoErJpaApplication.class, args);
@@ -42,7 +47,7 @@ public class ProyectoErJpaApplication implements CommandLineRunner {
 		almacenarFormatoPPA();
 		almacenarObservacion();
 		listarObservacion();
-
+		listarMiembrosComite();
 	}
 
 	@Transactional
@@ -76,8 +81,8 @@ public class ProyectoErJpaApplication implements CommandLineRunner {
 		objFormatoA.setEvaluaciones(listaEvaluaciones);
 		
 		Docente objDocente;
-		if (this.servicioBDMiembro.count() > 0) {
-		objDocente = this.servicioBDMiembro.getReferenceById(1);
+		if (this.servicioBDDocente.count() > 0) {
+		objDocente = this.servicioBDDocente.getReferenceById(1);
 		}else{
 		objDocente = new Docente();
 		objDocente.setApellidos_docente("Apellidos");
@@ -119,8 +124,8 @@ public class ProyectoErJpaApplication implements CommandLineRunner {
 		objFormatoA.setEvaluaciones(listaEvaluaciones);
 
 		Docente objDocente;
-		if (this.servicioBDMiembro.count() > 0) {
-		objDocente = this.servicioBDMiembro.getReferenceById(1);
+		if (this.servicioBDDocente.count() > 0) {
+		objDocente = this.servicioBDDocente.getReferenceById(1);
 		}else{
 		objDocente = new Docente();
 		objDocente.setApellidos_docente("Apellidos");
@@ -138,7 +143,7 @@ public class ProyectoErJpaApplication implements CommandLineRunner {
 		objObservacion.setObservacion("Observacion noseque");
 		objObservacion.setFecha_registro_observacion(new Date());
 
-		Docente refenciaDocente = this.servicioBDMiembro.getReferenceById(1);
+		Docente refenciaDocente = this.servicioBDDocente.getReferenceById(1);
 		List<Docente> listaDocentes = objObservacion.getListaDocentes();
 
 		listaDocentes.add(refenciaDocente);
@@ -187,12 +192,12 @@ public class ProyectoErJpaApplication implements CommandLineRunner {
 
 			System.out.println("Docentes");
 			Iterable<Docente> listaDocentes = observacion.getListaDocentes();;
-			for (Docente Docente : listaDocentes) {
-				System.out.println("id: " + Docente.getId_docente());
-				System.out.println("Nombres: " + Docente.getNombres_docente());
-				System.out.println("Apellidos: " + Docente.getApellidos_docente());
-				System.out.println("Correo: " + Docente.getCorreo());
-				System.out.println("Grupo: " + Docente.getNombre_grupo());
+			for (Docente docente : listaDocentes) {
+				System.out.println("id: " + docente.getId_docente());
+				System.out.println("Nombres: " + docente.getNombres_docente());
+				System.out.println("Apellidos: " + docente.getApellidos_docente());
+				System.out.println("Correo: " + docente.getCorreo());
+				System.out.println("Grupo: " + docente.getNombre_grupo());
 			}
 
 			System.out.println(" ---- ---- ----");
@@ -201,6 +206,27 @@ public class ProyectoErJpaApplication implements CommandLineRunner {
 
 	@Transactional(readOnly=true)
 	public void listarMiembrosComite(){
+		Iterable<Historico> listaHistoricos = this.servicioBDMiembro.findAll();
+		for (Historico historico : listaHistoricos){
+			System.out.println("Miembros de comite");
+			System.out.println("Id: " + historico.getId_historico());
+			System.out.println("activo: " + historico.getActivo());
+			System.out.println("Fecha de inicio: " + historico.getFechaInicio());
+			System.out.println("Fecha de fin: " + historico.getFechaFin());
+			System.out.println("-------------------");
+			Docente docente = historico.getObjDocente();
+			System.out.println("Docente");
+			System.out.println("id: " + docente.getId_docente());
+			System.out.println("Nombres: " + docente.getNombres_docente());
+			System.out.println("Apellidos: " + docente.getApellidos_docente());
+			System.out.println("Correo: " + docente.getCorreo());
+			System.out.println("Grupo: " + docente.getNombre_grupo());
+			System.out.println("-------------------");
+			Rol rol = historico.getObjRol();
+			System.out.println("Rol");
+			System.out.println("Rol asignado: "+rol.getRol_asignado());
+			System.out.println("-------------------");
+		}
 
 	}
 
