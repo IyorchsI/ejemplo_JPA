@@ -37,7 +37,7 @@ public class Observacion {
     @Column(nullable = false)
     private Date fecha_registro_observacion;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idfkEvaluacion", nullable = false)
     private Evaluacion objEvaluacion;
     
