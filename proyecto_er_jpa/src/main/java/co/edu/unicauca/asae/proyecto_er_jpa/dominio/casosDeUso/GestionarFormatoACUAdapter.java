@@ -1,6 +1,6 @@
 package co.edu.unicauca.asae.proyecto_er_jpa.dominio.casosDeUso;
 
-import java.util.List;
+//import java.util.List;
 import co.edu.unicauca.asae.proyecto_er_jpa.aplicacion.input.GestionarFormatoACUIntPort;
 import co.edu.unicauca.asae.proyecto_er_jpa.aplicacion.output.FormateadorResultadosIntPort;
 import co.edu.unicauca.asae.proyecto_er_jpa.aplicacion.output.GestionarFormatoAGatewayIntPort;
@@ -23,10 +23,12 @@ public class GestionarFormatoACUAdapter implements GestionarFormatoACUIntPort {
         throw new UnsupportedOperationException("Unimplemented method 'crearFormatoA'");
     }
 
+    /* 
     @Override
     public List<FormatoA> consultarFormatosAPorDocente(Integer id_docente) {
         
         throw new UnsupportedOperationException("Unimplemented method 'consultarFormatosAPorDocente'");
     }
+    */
 
 }

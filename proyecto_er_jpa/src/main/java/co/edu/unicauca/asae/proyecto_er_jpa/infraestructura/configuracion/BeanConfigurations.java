@@ -17,15 +17,6 @@ public class BeanConfigurations {
     public GestionarFormatoACUAdapter crearGestionarFormatoACUInt(
             GestionarFormatoAGatewayIntPort objGestionarFormatoAGateway,
             FormateadorResultadosIntPort objFormateadorResultados) {
-        GestionarFormatoACUAdapter objGestionarFormatoACU = new GestionarFormatoACUAdapter(objGestionarFormatoAGateway,
-                objFormateadorResultados);
-        return objGestionarFormatoACU;
-    }
-
-    @Bean
-    public GestionarFormatoACUAdapter crearGestionarFormatoACU(
-            GestionarFormatoAGatewayIntPort objGestionarFormatoAGateway,
-            FormateadorResultadosIntPort objFormateadorResultados) {
         return new GestionarFormatoACUAdapter(objGestionarFormatoAGateway, objFormateadorResultados);
     }
 
