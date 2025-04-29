@@ -1,4 +1,4 @@
-package co.edu.unicauca.asae.proyecto_er_jpa.models;
+package co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.entidades;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class Rol {
+public class RolEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idRol")
@@ -30,9 +30,9 @@ public class Rol {
     private String rol_asignado;
     
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "objRol")
-    private List<Historico> historicos;
+    private List<HistoricoEntity> historicos;
 
-    public Rol() {
-        this.historicos = new ArrayList<Historico>();
+    public RolEntity() {
+        this.historicos = new ArrayList<HistoricoEntity>();
     }
 }

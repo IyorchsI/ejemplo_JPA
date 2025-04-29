@@ -1,4 +1,4 @@
-package co.edu.unicauca.asae.proyecto_er_jpa.models;
+package co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.entidades;
 
 import java.util.Date;
 
@@ -23,7 +23,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Historico {
+public class HistoricoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idHistorico")
@@ -40,10 +40,10 @@ public class Historico {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idfkDocente", nullable = false)
-    private Docente objDocente;
+    private DocenteEntity objDocente;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idfkRol", nullable = false)
-    private Rol objRol;
+    private RolEntity objRol;
 
 }

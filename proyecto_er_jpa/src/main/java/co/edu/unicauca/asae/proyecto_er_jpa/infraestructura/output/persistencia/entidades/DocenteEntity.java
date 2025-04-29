@@ -1,4 +1,4 @@
-package co.edu.unicauca.asae.proyecto_er_jpa.models;
+package co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.entidades;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 
-public class Docente {
+public class DocenteEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idDocente")
@@ -40,14 +40,14 @@ public class Docente {
     private String correo;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "objDocente")
-    private List<FormatoA> formatosA;
+    private List<FormatoAEntity> formatosA;
     
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "objDocente")
-    private List<Historico> historicos;
+    private List<HistoricoEntity> historicos;
 
-    public Docente() {
-        this.formatosA = new ArrayList<FormatoA>();
-        this.historicos = new ArrayList<Historico>();
+    public DocenteEntity() {
+        this.formatosA = new ArrayList<FormatoAEntity>();
+        this.historicos = new ArrayList<HistoricoEntity>();
     }
 
 }
