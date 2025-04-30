@@ -1,4 +1,4 @@
-package co.edu.unicauca.asae.proyecto_er_jpa.models;
+package co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.entidades;
 
 import java.util.List;
 
@@ -14,13 +14,13 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class FormatoTIA extends FormatoA {
+public class FormatoTIAEntity extends FormatoAEntity {
     @Column(nullable = true, length = 100)
     private String nombre_estudiante2;
 
-    public FormatoTIA(String titulo_formato, String objetivo_general, String objetivos_especificos,
+    public FormatoTIAEntity(String titulo_formato, String objetivo_general, String objetivos_especificos,
             String nombre_estudiante1,
-            Estado objEstado, List<Evaluacion> evaluaciones, Docente objDocente, String nombre_estudiante2) {
+            EstadoEntity objEstado, List<EvaluacionEntity> evaluaciones, DocenteEntity objDocente, String nombre_estudiante2) {
         super(titulo_formato, objetivo_general, objetivo_general, nombre_estudiante1, objEstado, evaluaciones,
                 objDocente);
         this.nombre_estudiante2 = nombre_estudiante2;

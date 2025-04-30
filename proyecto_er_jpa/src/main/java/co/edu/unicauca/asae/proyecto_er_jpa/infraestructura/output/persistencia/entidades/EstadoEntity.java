@@ -1,4 +1,4 @@
-package co.edu.unicauca.asae.proyecto_er_jpa.models;
+package co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.entidades;
 
 import java.util.Date;
 
@@ -19,7 +19,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class Estado {
+public class EstadoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idEstado")
@@ -33,9 +33,9 @@ public class Estado {
 
     @OneToOne
     @JoinColumn(name = "idfkFormatoA", referencedColumnName = "idFormatoA", unique = true)
-    private FormatoA objFormatoA;
+    private FormatoAEntity objFormatoA;
 
-    public Estado() {
+    public EstadoEntity() {
         this.estado_actual = "En formulación";
     }
 }

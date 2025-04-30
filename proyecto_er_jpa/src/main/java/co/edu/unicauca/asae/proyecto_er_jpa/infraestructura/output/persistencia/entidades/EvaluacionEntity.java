@@ -1,4 +1,4 @@
-package co.edu.unicauca.asae.proyecto_er_jpa.models;
+package co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.entidades;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,7 +24,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 
-public class Evaluacion {
+public class EvaluacionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idEvaluacion")
@@ -41,13 +41,13 @@ public class Evaluacion {
 
     @ManyToOne
     @JoinColumn(name = "idfkFormatoA", nullable = false)
-    private FormatoA objFormatoA;
+    private FormatoAEntity objFormatoA;
     
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "objEvaluacion")
-    private List<Observacion> observaciones;
+    private List<ObservacionEntity> observaciones;
 
-    public Evaluacion() {
-        this.observaciones = new ArrayList<Observacion>();
+    public EvaluacionEntity() {
+        this.observaciones = new ArrayList<ObservacionEntity>();
     }
 
 }

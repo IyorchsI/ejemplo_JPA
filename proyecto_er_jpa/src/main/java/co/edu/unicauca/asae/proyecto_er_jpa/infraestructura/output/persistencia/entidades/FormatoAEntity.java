@@ -1,4 +1,4 @@
-package co.edu.unicauca.asae.proyecto_er_jpa.models;
+package co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.entidades;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,7 @@ import lombok.Setter;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Getter
 @Setter
-public class FormatoA {
+public class FormatoAEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idFormatoA")
@@ -42,21 +42,21 @@ public class FormatoA {
     private String nombre_estudiante1;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = { CascadeType.REMOVE, CascadeType.PERSIST }, mappedBy = "objFormatoA")
-    private Estado objEstado;
+    private EstadoEntity objEstado;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.REMOVE, CascadeType.PERSIST }, mappedBy = "objFormatoA")
-    private List<Evaluacion> evaluaciones;
+    private List<EvaluacionEntity> evaluaciones;
 
     @ManyToOne(cascade = { CascadeType.PERSIST })
     @JoinColumn(name = "idfkDocente", nullable = false)
-    private Docente objDocente;
+    private DocenteEntity objDocente;
 
-    public FormatoA() {
-        this.evaluaciones = new ArrayList<Evaluacion>();
+    public FormatoAEntity() {
+        this.evaluaciones = new ArrayList<EvaluacionEntity>();
     }
 
-    public FormatoA(String titulo_formato, String objetivo_general, String objetivos_especificos,
-            String nombre_estudiante1, Estado objEstado, List<Evaluacion> evaluaciones, Docente objDocente) {
+    public FormatoAEntity(String titulo_formato, String objetivo_general, String objetivos_especificos,
+            String nombre_estudiante1, EstadoEntity objEstado, List<EvaluacionEntity> evaluaciones, DocenteEntity objDocente) {
         this.titulo_formato = titulo_formato;
         this.objetivo_general = objetivo_general;
         this.objetivos_especificos = objetivos_especificos;
