@@ -18,7 +18,7 @@ public class GestionarFormatoACUAdapter implements GestionarFormatoACUIntPort {
     }
 
     @Override
-    public FormatoA crearFormatoA(FormatoA objFormatoA) {
+    public FormatoA crearFormatoA(FormatoA objFormatoA, Integer id_docente) {
         
         throw new UnsupportedOperationException("Unimplemented method 'crearFormatoA'");
     }

@@ -2,6 +2,7 @@ package co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import co.edu.unicauca.asae.proyecto_er_jpa.aplicacion.output.GestionarFormatoAGatewayIntPort;
 import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.Docente;
@@ -12,6 +13,7 @@ import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.respositorios.DocentesRepositoryInt;
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.respositorios.EstadoRepositoryInt;
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.respositorios.FormatosRepositoryInt;
+
 
 @Service
 public class GestionarFormatoAGatewayImplAdapter implements GestionarFormatoAGatewayIntPort {
@@ -31,25 +33,31 @@ public class GestionarFormatoAGatewayImplAdapter implements GestionarFormatoAGat
         this.formatoAModelMapper = formatoAModelMapper;
     }
 
+    // Método para verificar si existe un formato con el mismo titulo
     @Override
+    @Transactional(readOnly = true)
     public boolean existeFormatoAConTitulo(String titulo) {
-        // Verifica si ya existe un formato A con el mismo título
+        
         return formatoARepository.existeFormatoAConTitulo(titulo) > 0;
     }    
 
+    // Método para guardar un Formato A
     @Override
+    @Transactional
     public FormatoA guardarFormatoA(FormatoA formatoA) {
         // Convierte el DTO a entidad y persiste el formato A
         FormatoAEntity formatoAEntity = formatoAModelMapper.map(formatoA, FormatoAEntity.class);
         
-        // Guardamos el FormatoA y sus relaciones (Docente, Estado, etc.)
+        // Guardamos el FormatoA y sus relaciones (Docente, Estado)
         FormatoAEntity formatoACreado = formatoARepository.save(formatoAEntity);
 
         // Mapea la entidad guardada a un objeto de dominio y lo devuelve
         return formatoAModelMapper.map(formatoACreado, FormatoA.class);
     }
 
+    // Método para obtener un Docente por su id
     @Override
+    @Transactional(readOnly = true)
     public Docente obtenerDocentePorId(Integer id_docente) {
         /*  Recupera un docente de la base de datos por su ID
         return docenteRepository.findById(id_docente)
@@ -58,7 +66,9 @@ public class GestionarFormatoAGatewayImplAdapter implements GestionarFormatoAGat
         return new Docente();
     }
 
+    // Método para guardar el estado
     @Override
+    @Transactional
     public Estado guardarEstado(Estado estado) {
         // Mapea el Estado y lo guarda en la base de datos
         EstadoEntity estadoEntity = formatoAModelMapper.map(estado, EstadoEntity.class);

@@ -15,8 +15,8 @@ public class FormatoA {
     private String objetivos_especificos;
     private String nombre_estudiante1;
     private Estado objEstado;
-    private List<Evaluacion> evaluaciones;
     private Docente objDocente;
+    private List<Evaluacion> evaluaciones;
 
     public FormatoA() {
         this.evaluaciones = new ArrayList<Evaluacion>();

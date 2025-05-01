@@ -4,11 +4,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import co.edu.unicauca.asae.proyecto_er_jpa.aplicacion.output.FormateadorResultadosIntPort;
 import co.edu.unicauca.asae.proyecto_er_jpa.aplicacion.output.GestionarFormatoAGatewayIntPort;
-import co.edu.unicauca.asae.proyecto_er_jpa.aplicacion.output.GestionarMiembroComiteGatewayIntPort;
-import co.edu.unicauca.asae.proyecto_er_jpa.aplicacion.output.GestionarObservacionGatewayIntPort;
+//import co.edu.unicauca.asae.proyecto_er_jpa.aplicacion.output.GestionarMiembroComiteGatewayIntPort;
+//import co.edu.unicauca.asae.proyecto_er_jpa.aplicacion.output.GestionarObservacionGatewayIntPort;
 import co.edu.unicauca.asae.proyecto_er_jpa.dominio.casosDeUso.GestionarFormatoACUAdapter;
-import co.edu.unicauca.asae.proyecto_er_jpa.dominio.casosDeUso.GestionarMiembroComiteCUAdapter;
-import co.edu.unicauca.asae.proyecto_er_jpa.dominio.casosDeUso.GestionarObservacionCUAdapter;
+//import co.edu.unicauca.asae.proyecto_er_jpa.dominio.casosDeUso.GestionarMiembroComiteCUAdapter;
+//import co.edu.unicauca.asae.proyecto_er_jpa.dominio.casosDeUso.GestionarObservacionCUAdapter;
 
 @Configuration
 public class BeanConfigurations {
@@ -20,6 +20,7 @@ public class BeanConfigurations {
         return new GestionarFormatoACUAdapter(objGestionarFormatoAGateway, objFormateadorResultados);
     }
 
+    /* 
     @Bean
     public GestionarMiembroComiteCUAdapter crearGestionarMiembroComiteCUInt(
             GestionarMiembroComiteGatewayIntPort objGestionarMiembroComiteGateway,
@@ -33,5 +34,6 @@ public class BeanConfigurations {
             FormateadorResultadosIntPort objFormateadorResultados) {
         return new GestionarObservacionCUAdapter(objGestionarObservacionGateway, objFormateadorResultados);
     }
+    */
 
 }

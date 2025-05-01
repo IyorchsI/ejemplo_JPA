@@ -1,5 +1,35 @@
 package co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTOPeticion;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Size;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+// No debe enviar el id del formato A, pero si debe enviar el id del docente director.
+@Getter
+@Setter
+@AllArgsConstructor
 public class FormatoADTOPeticion {
-    
+
+    @NotBlank(message = "{formatoA.titulo.emply}")
+    @Size(max = 100, message = "{formatoA.titulo.size}")
+    private String titulo_formato;
+
+    @NotBlank(message = "{formatoA.objGeneral.emply}")
+    private String objetivo_general;
+
+    @NotBlank(message = "{formatoA.objEspecificos.emply}")
+    private String objetivos_especificos;
+
+    @NotBlank(message = "{formatoA.nombreEstudiante1.emply}")
+    @Size(max = 100, message = "{formatoA.nombreEstudiante1.size}")
+    private String nombre_estudiante1;
+
+    @NotNull(message = "{formatoA.id_docente.emply}")
+    @PositiveOrZero(message = "{formatoA.id_docente.positive}")
+    private Integer id_docente;
 }
