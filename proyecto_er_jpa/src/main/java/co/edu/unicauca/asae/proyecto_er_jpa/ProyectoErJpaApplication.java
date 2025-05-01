@@ -1,5 +1,22 @@
 package co.edu.unicauca.asae.proyecto_er_jpa;
 
+
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class ProyectoErJpaApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(ProyectoErJpaApplication.class, args);
+	}
+
+}
+
+
+
+/* 
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -24,8 +41,9 @@ import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.respositorios.FormatosRepositoryInt;
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.respositorios.MiembrosRepositoryInt;
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.respositorios.ObservacionesRepositoryInt;
+*/
 
-@SpringBootApplication
+/*
 @Transactional
 public class ProyectoErJpaApplication implements CommandLineRunner {
 	@Autowired
@@ -286,3 +304,4 @@ public class ProyectoErJpaApplication implements CommandLineRunner {
 	}
 
 }
+*/

@@ -4,10 +4,9 @@ import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -21,9 +20,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class EstadoEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idEstado")
-    private Integer id_estado;
+    private Integer id;
 
     @Column(nullable = false, length = 50)
     private String estado_actual;
@@ -32,7 +29,8 @@ public class EstadoEntity {
     private Date fecha_registro_estado;
 
     @OneToOne
-    @JoinColumn(name = "idfkFormatoA", referencedColumnName = "idFormatoA", unique = true)
+    @MapsId // Indica que el id se toma del FormatoA
+    @JoinColumn(name = "idFormatoA")
     private FormatoAEntity objFormatoA;
 
     public EstadoEntity() {

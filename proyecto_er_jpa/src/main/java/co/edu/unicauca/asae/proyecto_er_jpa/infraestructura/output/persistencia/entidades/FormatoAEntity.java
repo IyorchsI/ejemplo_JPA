@@ -14,6 +14,7 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.Getter;
@@ -42,6 +43,8 @@ public class FormatoAEntity {
     private String nombre_estudiante1;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = { CascadeType.REMOVE, CascadeType.PERSIST }, mappedBy = "objFormatoA")
+    @MapsId
+    @JoinColumn(name = "idFormatoA", referencedColumnName = "idFormatoA", unique = true)
     private EstadoEntity objEstado;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.REMOVE, CascadeType.PERSIST }, mappedBy = "objFormatoA")
