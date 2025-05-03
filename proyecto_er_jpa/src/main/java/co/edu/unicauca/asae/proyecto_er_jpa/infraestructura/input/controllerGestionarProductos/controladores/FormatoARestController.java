@@ -1,59 +1,103 @@
 package co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.controladores;
 
-//import java.util.List;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-//import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.FormatoA;
+import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.FormatoPPA;
+import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.FormatoTIA;
 import co.edu.unicauca.asae.proyecto_er_jpa.aplicacion.input.GestionarFormatoACUIntPort;
-import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTOPeticion.FormatoADTOPeticion;
-import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTORespuesta.FormatoADTORespuesta;
-import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.mappers.FormatoAMapperInfraestructuraDominio;
+import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTOPeticion.FormatoPPADTOPeticion;
+import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTOPeticion.FormatoTIADTOPeticion;
+import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTORespuesta.FormatoPPADTORespuesta;
+import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTORespuesta.FormatoTIADTORespuesta;
+import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.mappers.FormatoPPAMapperInfraDominio;
+import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.mappers.FormatoTIAMapperInfraDominio;
 
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
 public class FormatoARestController {
 
+    // Interfaces Casos de Uso
     private final GestionarFormatoACUIntPort objGestionarFormatoACUInt;
-    private final FormatoAMapperInfraestructuraDominio objMapeadorFormatoA;
 
-    @PostMapping("/formatos")
-    public ResponseEntity<FormatoADTORespuesta> create(@RequestBody @Valid FormatoADTOPeticion objFormatoA) {
-        FormatoA objFormatoACrear = objMapeadorFormatoA.mappearDePeticionAFormatoA(objFormatoA);
-        FormatoA objFormatoACreado = objGestionarFormatoACUInt.crearFormatoA(objFormatoACrear, objFormatoA.getId_docente());
-        ResponseEntity<FormatoADTORespuesta> objRespuesta = new ResponseEntity<FormatoADTORespuesta>(
-                objMapeadorFormatoA.mappearDeFormatoAARespuesta(objFormatoACreado),
-                HttpStatus.CREATED);
+    // Mappers
+    private final FormatoPPAMapperInfraDominio objMapeadorPPA;
+    private final FormatoTIAMapperInfraDominio objMapeadorTIA;
+
+    // PUNTO 1. CREAR FORMATOA //
+    // Permite Crear un formato PPA
+    @PostMapping("/formatos/ppa")
+    public ResponseEntity<FormatoPPADTORespuesta> createPPA(
+            @RequestBody @Valid FormatoPPADTOPeticion objFormatoPPAPeticion) {
+
+        // Convertir El DTOPeticion al Formato del dominio
+        FormatoPPA objPPAACrear = objMapeadorPPA.mappearDePeticionAFormatoPPA(objFormatoPPAPeticion);
+        
+        // Utiliza el Caso de Uso para crear el Formato y darle la persistencia
+        FormatoPPA objPPAcreado = objGestionarFormatoACUInt.crearFormatoPPA(objPPAACrear,
+                objFormatoPPAPeticion.getId_docente());
+
+        // Convertir Formato del dominio DTORespuesta al DTORespuesta
+        ResponseEntity<FormatoPPADTORespuesta> objRespuesta = new ResponseEntity<FormatoPPADTORespuesta>(
+                objMapeadorPPA.mappearDeFormatoPPARespuesta(objPPAcreado), HttpStatus.CREATED);
+
+        // Retorna la respuesta
         return objRespuesta;
     }
 
-    /* 
-    @GetMapping("/por-docente/{idDocente}")
-    public ResponseEntity<List<FormatoADTORespuesta>> consultarPorDocente(@PathVariable Integer idDocente) {
-        List<FormatoA> formatos = objGestionarFormatoACUInt.consultarFormatosAPorDocente(idDocente);
-        List<FormatoADTORespuesta> formatosRespuesta = objMapeadorFormatoA.mappearDeFormatosAARespuesta(formatos);
-        ResponseEntity<List<FormatoADTORespuesta>> objRespuesta = new ResponseEntity<List<FormatoADTORespuesta>>(
-                formatosRespuesta, HttpStatus.OK);
+    // Permite Crear un formato TIA
+    @PostMapping("/formatos/tia")
+    public ResponseEntity<FormatoTIADTORespuesta> createTIA(
+            @RequestBody @Valid FormatoTIADTOPeticion objFormatoTIAPeticion) {
+
+        // Convertir El DTOPeticion al Formato del dominio
+        FormatoTIA objTIAACrear = objMapeadorTIA.mappearDePeticionAFormatoTIA(objFormatoTIAPeticion);
+        
+        // Utiliza el Caso de Uso para crear el Formato y darle la persistencia
+        FormatoTIA objTIAcreado = objGestionarFormatoACUInt.crearFormatoTIA(objTIAACrear,
+                objFormatoTIAPeticion.getId_docente());
+
+        // Convertir Formato del dominio DTORespuesta al DTORespuesta
+        ResponseEntity<FormatoTIADTORespuesta> objRespuesta = new ResponseEntity<FormatoTIADTORespuesta>(
+                objMapeadorTIA.mappearDeFormatoTIARespuesta(objTIAcreado), HttpStatus.CREATED);
+
+        // Retorna la respuesta
         return objRespuesta;
     }
-    */
-    
-    /*Listar
-    @GetMapping("/formatos")
-    public ResponseEntity<List<FormatoADTORespuesta>> listar() {
-        ResponseEntity<List<FormatoADTORespuesta>> objRespuesta = new ResponseEntity<List<FormatoADTORespuesta>>(
-                objMapeadorFormatoA.mappearDeFormatoAARespuesta(this.objGestionarFormatoACUInt.listar()),
-                HttpStatus.OK);
-        return objRespuesta;
-    }
+
+    /*
+     * @GetMapping("/por-docente/{idDocente}")
+     * public ResponseEntity<List<FormatoADTORespuesta>>
+     * consultarPorDocente(@PathVariable Integer idDocente) {
+     * List<FormatoA> formatos =
+     * objGestionarFormatoACUInt.consultarFormatosAPorDocente(idDocente);
+     * List<FormatoADTORespuesta> formatosRespuesta =
+     * objMapeadorFormatoA.mappearDeFormatosAARespuesta(formatos);
+     * ResponseEntity<List<FormatoADTORespuesta>> objRespuesta = new
+     * ResponseEntity<List<FormatoADTORespuesta>>(
+     * formatosRespuesta, HttpStatus.OK);
+     * return objRespuesta;
+     * }
+     */
+
+    /*
+     * Listar
+     * 
+     * @GetMapping("/formatos")
+     * public ResponseEntity<List<FormatoADTORespuesta>> listar() {
+     * ResponseEntity<List<FormatoADTORespuesta>> objRespuesta = new
+     * ResponseEntity<List<FormatoADTORespuesta>>(
+     * objMapeadorFormatoA.mappearDeFormatoAARespuesta(this.
+     * objGestionarFormatoACUInt.listar()),
+     * HttpStatus.OK);
+     * return objRespuesta;
+     * }
      */
 }

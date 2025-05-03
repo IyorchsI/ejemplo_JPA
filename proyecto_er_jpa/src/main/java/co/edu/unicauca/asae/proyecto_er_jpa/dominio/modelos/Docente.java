@@ -3,10 +3,15 @@ package co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos;
 import lombok.AllArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id_docente")
 public class Docente {
 
     private Integer id_docente;

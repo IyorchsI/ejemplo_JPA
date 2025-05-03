@@ -2,10 +2,12 @@ package co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGes
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @AllArgsConstructor
 public class FormatoADTORespuesta {
 

@@ -20,7 +20,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class EstadoEntity {
     @Id
-    private Integer id;
+    private Integer idFormatoA; // PK que también es FK
 
     @Column(nullable = false, length = 50)
     private String estado_actual;

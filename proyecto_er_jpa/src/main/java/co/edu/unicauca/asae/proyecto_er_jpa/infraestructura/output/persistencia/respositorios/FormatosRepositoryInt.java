@@ -7,7 +7,7 @@ import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.
 
 public interface FormatosRepositoryInt extends CrudRepository<FormatoAEntity, Integer> {
 
-    @Query(value = "SELECT COUNT(*) FROM formato_a WHERE titulo = ?1", nativeQuery = true)
+    @Query(value = "SELECT COUNT(*) FROM formatoaentity WHERE titulo_formato = ?1", nativeQuery = true)
     Integer existeFormatoAConTitulo(String titulo);
     
 }
