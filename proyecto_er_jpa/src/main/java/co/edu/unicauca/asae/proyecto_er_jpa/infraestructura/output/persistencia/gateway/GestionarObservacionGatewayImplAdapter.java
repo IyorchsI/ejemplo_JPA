@@ -20,6 +20,7 @@ import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.respositorios.ObservacionesRepositoryInt;
 
 @Service
+@Transactional
 public class GestionarObservacionGatewayImplAdapter implements GestionarObservacionGatewayIntPort{
 
     // Repositorios

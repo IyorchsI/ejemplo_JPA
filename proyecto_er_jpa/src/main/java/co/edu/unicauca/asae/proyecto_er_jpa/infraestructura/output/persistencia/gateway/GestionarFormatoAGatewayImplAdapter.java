@@ -20,6 +20,7 @@ import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.respositorios.FormatosRepositoryInt;
 
 @Service
+@Transactional
 public class GestionarFormatoAGatewayImplAdapter implements GestionarFormatoAGatewayIntPort {
 
     // Repositorios

@@ -20,8 +20,10 @@ public class Docente {
     private String nombre_grupo;
     private String correo;
     private List<FormatoA> formatosA;
+    private List<Historico> historicos;
 
     public Docente() {
         this.formatosA = new ArrayList<FormatoA>();
+        this.historicos = new ArrayList<Historico>();
     }
 }
