@@ -20,6 +20,7 @@ public interface FormatoPPAMapperInfraDominio {
 
     @Mapping(target = "estado_actual", source = "objEstado.estado_actual")
     @Mapping(target = "nombres_docente", source = "objDocente.nombres_docente")
+    @Mapping(target = "evaluaciones", source = "evaluaciones")
     FormatoPPADTORespuesta mappearDeFormatoPPARespuesta(FormatoPPA formatoPPA);
     
     List<FormatoPPADTORespuesta> mappearDeFormatosPPARespuesta(List<FormatoPPA> formatosPPA);

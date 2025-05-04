@@ -14,8 +14,8 @@ public interface FormatosRepositoryInt extends CrudRepository<FormatoAEntity, In
     @Query(value = "SELECT COUNT(*) FROM formatosA WHERE titulo_formato = ?1", nativeQuery = true)
     Integer existeFormatoAConTitulo(String titulo);
     
-    @Query("SELECT f FROM FormatoAEntity f JOIN FETCH f.objDocente WHERE f.id_formato = :id_formato")
-    List<FormatoAEntity> obtenerConDocentePorId(@Param("id_formato") Integer id_formato);
+    @Query("SELECT f FROM FormatoAEntity f WHERE f.objDocente.id_docente=:id_docente")
+    List<FormatoAEntity> obtenerConDocentePorId(@Param("id_docente") Integer id_docente);
 
     @Query("SELECT f FROM FormatoAEntity f WHERE f.id_formato = :id_formato")
     Optional<FormatoAEntity> findFormatoAConRelacionesCompletas(@Param("id_formato") Integer id_formato);

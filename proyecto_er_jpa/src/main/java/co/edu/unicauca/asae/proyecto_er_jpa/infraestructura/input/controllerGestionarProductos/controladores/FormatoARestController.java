@@ -1,5 +1,6 @@
 package co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.controladores;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,7 +28,6 @@ import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGest
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.mappers.Formatos.FormatoAMapperInfraestructuraDominio;
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.mappers.Formatos.FormatoPPAMapperInfraDominio;
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.mappers.Formatos.FormatoTIAMapperInfraDominio;
-import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.mappers.FormatoAMapper;
 
 @RestController
 @RequestMapping("/api")
@@ -89,7 +89,14 @@ public class FormatoARestController {
       public ResponseEntity<List<FormatoADTORespuesta>>
       consultarPorDocente(@PathVariable Integer idDocente) {
       List<FormatoA> formatos = objGestionarFormatoACUInt.buscarFormatoAporDocente(idDocente);
-      List<FormatoADTORespuesta> formatosRespuesta = objMapeadorA.mappearDeFormatosAARespuesta(formatos);
+      List<FormatoADTORespuesta> formatosRespuesta = new ArrayList<FormatoADTORespuesta>();
+      for (FormatoA formato : formatos){
+        if(formato instanceof FormatoPPA){
+                formatosRespuesta.add(objMapeadorPPA.mappearDeFormatoPPARespuesta(((FormatoPPA) formato)));
+        }else{
+                formatosRespuesta.add(objMapeadorTIA.mappearDeFormatoTIARespuesta(((FormatoTIA)formato)));
+        }
+      }
       ResponseEntity<List<FormatoADTORespuesta>> objRespuesta = new
       ResponseEntity<List<FormatoADTORespuesta>>(
       formatosRespuesta, HttpStatus.OK);

@@ -20,6 +20,7 @@ public interface FormatoTIAMapperInfraDominio {
 
     @Mapping(target = "estado_actual", source = "objEstado.estado_actual")
     @Mapping(target = "nombres_docente", source = "objDocente.nombres_docente")
+    @Mapping(target = "evaluaciones", source = "evaluaciones")
     FormatoTIADTORespuesta mappearDeFormatoTIARespuesta(FormatoTIA formatoTIA);
 
     List<FormatoTIADTORespuesta> mappearDeFormatosTIARespuesta(List<FormatoTIA> formatosTIA);

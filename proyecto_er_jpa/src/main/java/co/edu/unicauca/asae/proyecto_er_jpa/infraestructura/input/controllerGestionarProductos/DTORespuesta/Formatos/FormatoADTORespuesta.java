@@ -1,5 +1,8 @@
 package co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTORespuesta.Formatos;
 
+import java.util.List;
+
+import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTORespuesta.Evaluacion.EvaluacionDTORespuesta;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,4 +21,5 @@ public class FormatoADTORespuesta {
     private String nombre_estudiante1;
     private String estado_actual;
     private String nombres_docente;
+    private List<EvaluacionDTORespuesta> evaluaciones;
 }
