@@ -1,14 +1,18 @@
 package co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.gateway;
 
+import java.util.Optional;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.Docente;
+import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.FormatoA;
 import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.FormatoPPA;
 import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.FormatoTIA;
 import co.edu.unicauca.asae.proyecto_er_jpa.aplicacion.output.GestionarFormatoAGatewayIntPort;
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.entidades.DocenteEntity;
+import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.entidades.FormatoAEntity;
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.entidades.FormatoPPAEntity;
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.entidades.FormatoTIAEntity;
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.respositorios.DocentesRepositoryInt;
@@ -29,8 +33,7 @@ public class GestionarFormatoAGatewayImplAdapter implements GestionarFormatoAGat
             FormatosRepositoryInt formatoARepository,
             DocentesRepositoryInt docenteRepository,
             EstadoRepositoryInt estadoRepository,
-            ModelMapper formatoAModelMapper,
-            ModelMapper docenteModelMapper) {
+            ModelMapper formatoAModelMapper) {
 
         this.formatoARepository = formatoARepository;
         this.docenteRepository = docenteRepository;
@@ -131,4 +134,17 @@ public class GestionarFormatoAGatewayImplAdapter implements GestionarFormatoAGat
         Integer cantidad = docenteRepository.existeDocenteConCorreo(correo);
         return cantidad != null && cantidad > 0;
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public FormatoA obtenerFormatoAConDocentePorId(Integer id_formato) {
+        Optional<FormatoAEntity> entityOpt = this.formatoARepository.obtenerConDocentePorId(id_formato);
+
+        if (entityOpt.isPresent()) {
+            return formatoAModelMapper.map(entityOpt.get(), FormatoA.class);
+        }
+
+        return null;
+    }
+
 }

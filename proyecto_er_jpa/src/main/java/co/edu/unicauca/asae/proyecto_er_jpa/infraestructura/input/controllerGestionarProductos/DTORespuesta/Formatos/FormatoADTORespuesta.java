@@ -1,4 +1,4 @@
-package co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTORespuesta;
+package co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTORespuesta.Formatos;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

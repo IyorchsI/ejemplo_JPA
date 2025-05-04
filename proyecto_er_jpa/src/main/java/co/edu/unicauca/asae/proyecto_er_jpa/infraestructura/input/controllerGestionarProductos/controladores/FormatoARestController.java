@@ -12,19 +12,19 @@ import org.springframework.web.bind.annotation.RestController;
 import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.FormatoPPA;
 import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.FormatoTIA;
 import co.edu.unicauca.asae.proyecto_er_jpa.aplicacion.input.GestionarFormatoACUIntPort;
-import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTOPeticion.FormatoPPADTOPeticion;
-import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTOPeticion.FormatoTIADTOPeticion;
-import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTORespuesta.FormatoPPADTORespuesta;
-import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTORespuesta.FormatoTIADTORespuesta;
-import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.mappers.FormatoPPAMapperInfraDominio;
-import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.mappers.FormatoTIAMapperInfraDominio;
+import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTOPeticion.Formatos.FormatoPPADTOPeticion;
+import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTOPeticion.Formatos.FormatoTIADTOPeticion;
+import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTORespuesta.Formatos.FormatoPPADTORespuesta;
+import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTORespuesta.Formatos.FormatoTIADTORespuesta;
+import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.mappers.Formatos.FormatoPPAMapperInfraDominio;
+import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.mappers.Formatos.FormatoTIAMapperInfraDominio;
 
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
 public class FormatoARestController {
 
-    // Interfaces Casos de Uso
+    // Interface Caso de Uso
     private final GestionarFormatoACUIntPort objGestionarFormatoACUInt;
 
     // Mappers
