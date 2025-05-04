@@ -100,6 +100,7 @@ public class GestionarObservacionGatewayImplAdapter implements GestionarObservac
     }
 
     @Override
+    @Transactional(readOnly = true)
     public FormatoA obtenerFormatoAConObservaciones(Integer id_formato) {
     
         Optional<FormatoAEntity> formatoEntityOptional =

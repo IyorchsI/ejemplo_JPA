@@ -42,7 +42,7 @@ public class DocenteEntity {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "objDocente")
     private List<FormatoAEntity> formatosA;
     
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "objDocente")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "objDocente")
     private List<HistoricoEntity> historicos;
 
     public DocenteEntity() {
