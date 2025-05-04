@@ -10,6 +10,7 @@ import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGest
 
 @Mapper(componentModel = "spring")
 public interface FormatoAMapperInfraestructuraDominio {
+    //A
 
     @Mapping(target = "id_formato", ignore = true)
     @Mapping(target = "objEstado", ignore = true)
@@ -21,6 +22,6 @@ public interface FormatoAMapperInfraestructuraDominio {
     @Mapping(target = "nombres_docente", source = "objDocente.nombres_docente")
     FormatoADTORespuesta mappearDeFormatoAARespuesta(FormatoA objFormatoA);
 
-    List<FormatoADTORespuesta> mappearDeFormatosAARespuesta(List<FormatoA> formatosA);
+    List<FormatoADTORespuesta> mappearDeFormatosARespuesta(List<FormatoA> formatosA);
 
 }

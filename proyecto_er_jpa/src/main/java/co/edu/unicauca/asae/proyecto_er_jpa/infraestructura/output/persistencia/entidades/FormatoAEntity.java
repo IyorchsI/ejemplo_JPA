@@ -17,10 +17,12 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
+@Table(name = "formatosA")
 @Inheritance(strategy = InheritanceType.JOINED)
 @Getter
 @Setter

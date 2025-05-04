@@ -14,6 +14,7 @@ public class FormatoADTORespuesta {
     private String objetivo_general;
     private String objetivos_especificos;
     private String nombre_estudiante1;
+    private Integer codigo_estudiante1;
     private String estado_actual;
     private String nombres_docente;
 }

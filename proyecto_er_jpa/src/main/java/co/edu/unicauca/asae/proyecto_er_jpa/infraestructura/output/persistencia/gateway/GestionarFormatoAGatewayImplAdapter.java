@@ -1,5 +1,8 @@
 package co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.gateway;
 
+import java.util.Date;
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -8,8 +11,13 @@ import co.edu.unicauca.asae.proyecto_er_jpa.aplicacion.output.GestionarFormatoAG
 import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.Docente;
 import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.Estado;
 import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.FormatoA;
+import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.FormatoPPA;
+import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.entidades.DocenteEntity;
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.entidades.EstadoEntity;
+import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.entidades.EvaluacionEntity;
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.entidades.FormatoAEntity;
+import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.entidades.FormatoPPAEntity;
+import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.entidades.FormatoTIAEntity;
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.respositorios.DocentesRepositoryInt;
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.respositorios.EstadoRepositoryInt;
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.respositorios.FormatosRepositoryInt;
@@ -19,7 +27,7 @@ import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.
 public class GestionarFormatoAGatewayImplAdapter implements GestionarFormatoAGatewayIntPort {
 
     private final FormatosRepositoryInt formatoARepository;
-    //private final DocentesRepositoryInt docenteRepository;
+    private final DocentesRepositoryInt docenteRepository;
     private final EstadoRepositoryInt estadoRepository;
     private final ModelMapper formatoAModelMapper;
 
@@ -28,7 +36,7 @@ public class GestionarFormatoAGatewayImplAdapter implements GestionarFormatoAGat
                                                EstadoRepositoryInt estadoRepository, 
                                                ModelMapper formatoAModelMapper) {
         this.formatoARepository = formatoARepository;
-        //this.docenteRepository = docenteRepository;
+        this.docenteRepository = docenteRepository;
         this.estadoRepository = estadoRepository;
         this.formatoAModelMapper = formatoAModelMapper;
     }
@@ -36,18 +44,58 @@ public class GestionarFormatoAGatewayImplAdapter implements GestionarFormatoAGat
     // Método para verificar si existe un formato con el mismo titulo
     @Override
     @Transactional(readOnly = true)
-    public boolean existeFormatoAConTitulo(String titulo) {
-        
-        return formatoARepository.existeFormatoAConTitulo(titulo) > 0;
+    public boolean existeFormatoAConTitulo(FormatoA formatoA) { 
+        boolean band=false;
+        /*if(this.formatoARepository.existeFormatoAConTituloQuery(formatoA.getTitulo_formato()) > 0){
+            band=true;
+        }*/
+        return band;
     }    
 
     // Método para guardar un Formato A
     @Override
     @Transactional
     public FormatoA guardarFormatoA(FormatoA formatoA) {
-        // Convierte el DTO a entidad y persiste el formato A
-        FormatoAEntity formatoAEntity = formatoAModelMapper.map(formatoA, FormatoAEntity.class);
+
+        FormatoAEntity formatoAEntity = null;
+        if(formatoA instanceof FormatoPPA){
+            FormatoPPAEntity formatoPPAEntity =formatoAModelMapper.map(formatoA, FormatoPPAEntity.class);
+            formatoAEntity = formatoPPAEntity;
+        }else{
+            FormatoTIAEntity formatoTIAEntity =formatoAModelMapper.map(formatoA, FormatoTIAEntity.class);
+            formatoAEntity = formatoTIAEntity;
+        }
+
+        EstadoEntity objEstado = new EstadoEntity();
         
+        objEstado.setFecha_registro_estado(new Date());
+
+        objEstado.setObjFormatoA(formatoAEntity);
+
+        formatoAEntity.setObjEstado(objEstado);
+
+        List<EvaluacionEntity> listaEvaluaciones = formatoAEntity.getEvaluaciones();
+		EvaluacionEntity objEvaluacion = new EvaluacionEntity();
+		objEvaluacion.setConcepto(" ");
+		objEvaluacion.setFecha_registro_concepto(new Date());
+		objEvaluacion.setNombre_coordinador("Coordindador eva");
+		objEvaluacion.setObjFormatoA(formatoAEntity);
+
+		listaEvaluaciones.add(objEvaluacion);
+		
+		formatoAEntity.setEvaluaciones(listaEvaluaciones);
+
+        DocenteEntity objDocente;
+		//if (this.docenteRepository.count() > 0) {
+		//objDocente = this.docenteRepository.getReferenceById(1);
+        /*}else{*/
+		objDocente = new DocenteEntity();
+		objDocente.setApellidos_docente("Apellidos");
+		objDocente.setCorreo("Correo");
+		objDocente.setNombres_docente("Nombres");
+		//}
+		formatoAEntity.setObjDocente(objDocente);
+
         // Guardamos el FormatoA y sus relaciones (Docente, Estado)
         FormatoAEntity formatoACreado = formatoARepository.save(formatoAEntity);
 

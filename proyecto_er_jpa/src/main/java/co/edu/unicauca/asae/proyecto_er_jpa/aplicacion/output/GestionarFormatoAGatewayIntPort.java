@@ -12,7 +12,7 @@ public interface GestionarFormatoAGatewayIntPort {
 
     //1. Crear formato A.
     // Verifica si ya existe un formato A con el mismo título
-    boolean existeFormatoAConTitulo(String titulo);
+    boolean existeFormatoAConTitulo(FormatoA formatoA);
     
     // Guarda el formato A (incluyendo el estado y la relación con el docente)
     FormatoA guardarFormatoA(FormatoA formatoA);

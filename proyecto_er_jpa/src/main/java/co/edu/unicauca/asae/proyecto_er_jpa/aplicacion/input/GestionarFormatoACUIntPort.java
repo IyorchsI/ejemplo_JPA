@@ -8,7 +8,7 @@ public interface GestionarFormatoACUIntPort {
     //Servicios REST solicitados//
 
     //1. Crear formato A.
-    public FormatoA crearFormatoA(FormatoA objFormatoA, Integer id_docente);
+    public FormatoA crearFormatoA(FormatoA objFormatoA);
 
     //5. Consultar formatos A por docente.
     //public List<FormatoA> consultarFormatosAPorDocente(Integer id_docente);

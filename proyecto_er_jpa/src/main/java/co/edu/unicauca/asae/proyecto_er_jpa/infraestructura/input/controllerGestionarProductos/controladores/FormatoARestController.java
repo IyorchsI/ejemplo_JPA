@@ -29,7 +29,7 @@ public class FormatoARestController {
     @PostMapping("/formatos")
     public ResponseEntity<FormatoADTORespuesta> create(@RequestBody @Valid FormatoADTOPeticion objFormatoA) {
         FormatoA objFormatoACrear = objMapeadorFormatoA.mappearDePeticionAFormatoA(objFormatoA);
-        FormatoA objFormatoACreado = objGestionarFormatoACUInt.crearFormatoA(objFormatoACrear, objFormatoA.getId_docente());
+        FormatoA objFormatoACreado = objGestionarFormatoACUInt.crearFormatoA(objFormatoACrear);
         ResponseEntity<FormatoADTORespuesta> objRespuesta = new ResponseEntity<FormatoADTORespuesta>(
                 objMapeadorFormatoA.mappearDeFormatoAARespuesta(objFormatoACreado),
                 HttpStatus.CREATED);

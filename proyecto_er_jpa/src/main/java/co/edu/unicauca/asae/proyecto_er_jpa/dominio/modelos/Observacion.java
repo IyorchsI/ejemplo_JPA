@@ -1,9 +1,10 @@
 package co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos;
 
-import lombok.AllArgsConstructor;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
@@ -11,9 +12,13 @@ import lombok.Data;
 public class Observacion {
 
     private Integer id_observacion;
+
     private String observacion;
+
     private Date fecha_registro_observacion;
+
     private Evaluacion objEvaluacion;
+
     private List<Docente> listaDocentes;
 
     public Observacion() {

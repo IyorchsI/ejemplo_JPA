@@ -1,5 +1,6 @@
 package co.edu.unicauca.asae.proyecto_er_jpa.dominio.casosDeUso;
 
+
 //import java.util.List;
 import co.edu.unicauca.asae.proyecto_er_jpa.aplicacion.input.GestionarFormatoACUIntPort;
 import co.edu.unicauca.asae.proyecto_er_jpa.aplicacion.output.FormateadorResultadosIntPort;
@@ -18,9 +19,16 @@ public class GestionarFormatoACUAdapter implements GestionarFormatoACUIntPort {
     }
 
     @Override
-    public FormatoA crearFormatoA(FormatoA objFormatoA, Integer id_docente) {
-        
-        throw new UnsupportedOperationException("Unimplemented method 'crearFormatoA'");
+    public FormatoA crearFormatoA(FormatoA objFormatoA) {
+        FormatoA objFormatoACreado = null;
+        if (this.objGestionarFormatoAGateway.existeFormatoAConTitulo(objFormatoA)) {
+            this.objFormateadorResultados
+                    .retornarRespuestaErrorEntidadExiste("Error, se encuentra en el sistema un producto con el titulo");
+        } else {
+
+                objFormatoACreado = this.objGestionarFormatoAGateway.guardarFormatoA(objFormatoA);
+        }
+        return objFormatoACreado;
     }
 
     /* 
