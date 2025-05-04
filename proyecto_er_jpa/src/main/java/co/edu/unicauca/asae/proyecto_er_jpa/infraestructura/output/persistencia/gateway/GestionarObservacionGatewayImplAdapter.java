@@ -2,6 +2,7 @@ package co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -11,12 +12,15 @@ import org.springframework.transaction.annotation.Transactional;
 import co.edu.unicauca.asae.proyecto_er_jpa.aplicacion.output.GestionarObservacionGatewayIntPort;
 import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.Docente;
 import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.Evaluacion;
+import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.FormatoA;
 import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.Observacion;
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.entidades.DocenteEntity;
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.entidades.EvaluacionEntity;
+import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.entidades.FormatoAEntity;
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.entidades.ObservacionEntity;
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.respositorios.DocentesRepositoryInt;
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.respositorios.EvaluacionesRepositoryInt;
+import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.respositorios.FormatosRepositoryInt;
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.respositorios.ObservacionesRepositoryInt;
 
 @Service
@@ -26,6 +30,7 @@ public class GestionarObservacionGatewayImplAdapter implements GestionarObservac
     private final ObservacionesRepositoryInt observacionRepository;
     private final EvaluacionesRepositoryInt evaluacionRepository;
     private final DocentesRepositoryInt docenteRepository;
+    private final FormatosRepositoryInt formatoARepository;        
 
     // ModelMappers
     private final ModelMapper formatoAModelMapper;
@@ -34,11 +39,13 @@ public class GestionarObservacionGatewayImplAdapter implements GestionarObservac
             ObservacionesRepositoryInt observacionRepository,
             EvaluacionesRepositoryInt evaluacionRepository,
             DocentesRepositoryInt docenteRepository,
+            FormatosRepositoryInt formatoARepository,
             ModelMapper formatoAModelMapper) {
 
         this.observacionRepository = observacionRepository;
         this.evaluacionRepository = evaluacionRepository;
         this.docenteRepository = docenteRepository;
+        this.formatoARepository = formatoARepository;
         this.formatoAModelMapper = formatoAModelMapper;
     }
 
@@ -90,6 +97,22 @@ public class GestionarObservacionGatewayImplAdapter implements GestionarObservac
         return entidades.stream()
                 .map(docente -> formatoAModelMapper.map(docente, Docente.class))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public FormatoA obtenerFormatoAConObservaciones(Integer id_formato) {
+    
+        Optional<FormatoAEntity> formatoEntityOptional =
+            this.formatoARepository.findFormatoAConRelacionesCompletas(id_formato);
+    
+        if (formatoEntityOptional.isEmpty()) {
+            System.out.println("--NO SE ENCONTRO FORMATO A--");
+            return null;
+        }
+    
+        FormatoA formato = formatoAModelMapper.map(formatoEntityOptional.get(), FormatoA.class);
+    
+        return formato;
     }
 
 }
