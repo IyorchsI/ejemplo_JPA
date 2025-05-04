@@ -1,5 +1,6 @@
 package co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.gateway;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
@@ -138,14 +139,20 @@ public class GestionarFormatoAGatewayImplAdapter implements GestionarFormatoAGat
 
     @Override
     @Transactional(readOnly = true)
-    public FormatoA obtenerFormatoAConDocentePorId(Integer id_formato) {
-        Optional<FormatoAEntity> entityOpt = this.formatoARepository.obtenerConDocentePorId(id_formato);
-
-        if (entityOpt.isPresent()) {
-            return formatoAModelMapper.map(entityOpt.get(), FormatoA.class);
+    public List<FormatoA> obtenerFormatoAConDocentePorId(Integer id_formato) {
+        List<FormatoAEntity> formatosEntity = this.formatoARepository.obtenerConDocentePorId(id_formato);
+        List<FormatoA> formatoa = null;
+        if (formatosEntity != null) {
+            formatoa = formatosEntity.stream().map(formatoEntity ->{
+                if(formatoEntity instanceof FormatoPPAEntity){
+                    return this.formatoAModelMapper.map(formatoEntity, FormatoPPA.class);
+                }else{
+                    return this.formatoAModelMapper.map(formatoEntity, FormatoTIA.class);
+                }
+                
+            }).toList();
         }
-
-        return null;
+        return formatoa;
     }
 
 }

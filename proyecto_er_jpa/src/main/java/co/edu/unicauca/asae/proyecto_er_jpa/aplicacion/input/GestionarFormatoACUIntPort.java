@@ -1,5 +1,8 @@
 package co.edu.unicauca.asae.proyecto_er_jpa.aplicacion.input;
 
+import java.util.List;
+
+import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.FormatoA;
 import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.FormatoPPA;
 import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.FormatoTIA;
 
@@ -14,5 +17,10 @@ public interface GestionarFormatoACUIntPort {
 
     // Tipo TI
     public FormatoTIA crearFormatoTIA(FormatoTIA objFormatoTIA, Integer id_docente);
+
+
+    public List<FormatoA> buscarFormatoAporDocente(Integer id_docente);
+
+
 
 }

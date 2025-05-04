@@ -1,24 +1,33 @@
 package co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.controladores;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.FormatoA;
 import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.FormatoPPA;
 import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.FormatoTIA;
 import co.edu.unicauca.asae.proyecto_er_jpa.aplicacion.input.GestionarFormatoACUIntPort;
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTOPeticion.Formatos.FormatoPPADTOPeticion;
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTOPeticion.Formatos.FormatoTIADTOPeticion;
+import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTORespuesta.Formatos.FormatoADTORespuesta;
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTORespuesta.Formatos.FormatoPPADTORespuesta;
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTORespuesta.Formatos.FormatoTIADTORespuesta;
+import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.mappers.Formatos.FormatoAMapperInfraestructuraDominio;
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.mappers.Formatos.FormatoPPAMapperInfraDominio;
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.mappers.Formatos.FormatoTIAMapperInfraDominio;
+import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.mappers.FormatoAMapper;
 
 @RestController
 @RequestMapping("/api")
@@ -32,6 +41,7 @@ public class FormatoARestController {
     // Mappers
     private final FormatoPPAMapperInfraDominio objMapeadorPPA;
     private final FormatoTIAMapperInfraDominio objMapeadorTIA;
+    private final FormatoAMapperInfraestructuraDominio objMapeadorA;
 
     // PUNTO 1. CREAR FORMATOA //
     // Permite Crear un formato PPA
@@ -74,20 +84,17 @@ public class FormatoARestController {
         return objRespuesta;
     }
 
-    /*
-     * @GetMapping("/por-docente/{idDocente}")
-     * public ResponseEntity<List<FormatoADTORespuesta>>
-     * consultarPorDocente(@PathVariable Integer idDocente) {
-     * List<FormatoA> formatos =
-     * objGestionarFormatoACUInt.consultarFormatosAPorDocente(idDocente);
-     * List<FormatoADTORespuesta> formatosRespuesta =
-     * objMapeadorFormatoA.mappearDeFormatosAARespuesta(formatos);
-     * ResponseEntity<List<FormatoADTORespuesta>> objRespuesta = new
-     * ResponseEntity<List<FormatoADTORespuesta>>(
-     * formatosRespuesta, HttpStatus.OK);
-     * return objRespuesta;
-     * }
-     */
+
+      @GetMapping("/por-docente/{idDocente}")
+      public ResponseEntity<List<FormatoADTORespuesta>>
+      consultarPorDocente(@PathVariable Integer idDocente) {
+      List<FormatoA> formatos = objGestionarFormatoACUInt.buscarFormatoAporDocente(idDocente);
+      List<FormatoADTORespuesta> formatosRespuesta = objMapeadorA.mappearDeFormatosAARespuesta(formatos);
+      ResponseEntity<List<FormatoADTORespuesta>> objRespuesta = new
+      ResponseEntity<List<FormatoADTORespuesta>>(
+      formatosRespuesta, HttpStatus.OK);
+      return objRespuesta;
+      }
 
     /*
      * Listar

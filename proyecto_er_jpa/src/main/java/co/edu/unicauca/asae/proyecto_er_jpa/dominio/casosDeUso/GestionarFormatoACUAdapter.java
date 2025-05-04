@@ -1,12 +1,14 @@
 package co.edu.unicauca.asae.proyecto_er_jpa.dominio.casosDeUso;
 
 import java.util.Date;
+import java.util.List;
 
 import co.edu.unicauca.asae.proyecto_er_jpa.aplicacion.input.GestionarFormatoACUIntPort;
 import co.edu.unicauca.asae.proyecto_er_jpa.aplicacion.output.FormateadorResultadosIntPort;
 import co.edu.unicauca.asae.proyecto_er_jpa.aplicacion.output.GestionarFormatoAGatewayIntPort;
 import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.Docente;
 import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.Estado;
+import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.FormatoA;
 import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.FormatoPPA;
 import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.FormatoTIA;
 
@@ -154,6 +156,20 @@ public class GestionarFormatoACUAdapter implements GestionarFormatoACUIntPort {
         }
     
         return objFormatoTIACreado;
+    }
+
+    @Override
+    public List<FormatoA> buscarFormatoAporDocente(Integer id_docente) {
+            Docente docenteExistente = this.objGestionarFormatoAGateway.obtenerDocentePorId(id_docente);
+            List<FormatoA> resultado = null;
+    
+            if (docenteExistente != null) {
+                resultado = this.objGestionarFormatoAGateway.obtenerFormatoAConDocentePorId(id_docente);
+            }
+
+        
+        
+       return resultado;
     }
 
 }

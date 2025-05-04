@@ -61,7 +61,7 @@ public class GestionarObservacionCUAdapter implements GestionarObservacionCUIntP
             evaluacion.setConcepto("Por establecer");
     
             // Obtener el formato con el docente para recuperar el nombre del coordinador
-            FormatoA formatoCompleto = this.objGestionarFormatoAGateway.obtenerFormatoAConDocentePorId(id_formato);
+            FormatoA formatoCompleto = this.objGestionarFormatoAGateway.obtenerFormatoAConDocentePorId(id_formato).get(0);
     
             if (formatoCompleto == null || formatoCompleto.getObjDocente() == null) {
                 throw new IllegalStateException("No se pudo obtener el FormatoA con su docente asociado.");
@@ -86,7 +86,7 @@ public class GestionarObservacionCUAdapter implements GestionarObservacionCUIntP
                 evaluacion.setConcepto("Por establecer");
     
                 // Obtener el formato con el docente para recuperar el nombre del coordinador
-                FormatoA formatoCompleto = this.objGestionarFormatoAGateway.obtenerFormatoAConDocentePorId(id_formato);
+                FormatoA formatoCompleto = this.objGestionarFormatoAGateway.obtenerFormatoAConDocentePorId(id_formato).get(0);
 
                 if (formatoCompleto == null || formatoCompleto.getObjDocente() == null) {
                     throw new IllegalStateException("No se pudo obtener el FormatoA con su docente asociado.");

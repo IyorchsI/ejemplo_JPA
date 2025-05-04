@@ -1,5 +1,7 @@
 package co.edu.unicauca.asae.proyecto_er_jpa.aplicacion.output;
 
+import java.util.List;
+
 import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.Docente;
 import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.FormatoA;
 import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.FormatoPPA;
@@ -26,6 +28,6 @@ public interface GestionarFormatoAGatewayIntPort {
     public boolean existeDocentePorCorreo(String correo);
 
     // Obtener un formato por id
-    FormatoA obtenerFormatoAConDocentePorId(Integer id_formato);
+    List<FormatoA> obtenerFormatoAConDocentePorId(Integer id_formato);
 
 }

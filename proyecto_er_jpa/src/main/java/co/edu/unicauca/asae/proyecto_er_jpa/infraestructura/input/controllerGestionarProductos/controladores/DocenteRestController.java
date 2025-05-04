@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import co.edu.unicauca.asae.proyecto_er_jpa.aplicacion.input.GestionarDocenteCUIntPort;
 import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.Docente;
+import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.Historico;
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTOPeticion.Docente.DocenteDTOPeticion;
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTORespuesta.Docente.DocenteDTORespuesta;
+import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTORespuesta.Docente.MiembroComiteDTORespuesta;
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.mappers.Docente.DocenteMapperInfraDominio;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -36,6 +38,13 @@ public class DocenteRestController {
 
         return ResponseEntity.ok(respuesta);
 
+    }
+
+    @GetMapping("/comite")
+    public ResponseEntity<List<MiembroComiteDTORespuesta>> listarMiembrosComite() {
+        List<Historico> historicos = objGestionarDocenteCUInt.listarMiembrosComite();
+        List<MiembroComiteDTORespuesta> respuesta = objMapeadorDocente.mappearMiembrosComite(historicos);
+        return ResponseEntity.ok(respuesta);
     }
         
 }
