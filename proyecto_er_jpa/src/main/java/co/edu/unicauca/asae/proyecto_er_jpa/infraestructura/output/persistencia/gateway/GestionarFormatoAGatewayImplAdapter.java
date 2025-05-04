@@ -1,7 +1,6 @@
 package co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.gateway;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
