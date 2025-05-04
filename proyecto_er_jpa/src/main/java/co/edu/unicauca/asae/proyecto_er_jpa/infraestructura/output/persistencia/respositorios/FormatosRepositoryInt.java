@@ -15,4 +15,7 @@ public interface FormatosRepositoryInt extends CrudRepository<FormatoAEntity, In
     
     @Query("SELECT f FROM FormatoAEntity f JOIN FETCH f.objDocente WHERE f.id_formato = :id_formato")
     Optional<FormatoAEntity> obtenerConDocentePorId(@Param("id_formato") Integer id_formato);
+
+    @Query("SELECT f FROM FormatoAEntity f WHERE f.id_formato = :id_formato")
+    Optional<FormatoAEntity> findFormatoAConRelacionesCompletas(@Param("id_formato") Integer id_formato);
 }

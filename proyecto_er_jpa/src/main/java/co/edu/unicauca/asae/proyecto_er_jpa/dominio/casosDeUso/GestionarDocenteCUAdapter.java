@@ -6,6 +6,7 @@ import co.edu.unicauca.asae.proyecto_er_jpa.aplicacion.input.GestionarDocenteCUI
 import co.edu.unicauca.asae.proyecto_er_jpa.aplicacion.output.FormateadorResultadosIntPort;
 import co.edu.unicauca.asae.proyecto_er_jpa.aplicacion.output.GestionarDocenteGatewayIntPort;
 import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.Docente;
+import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.Historico;
 
 public class GestionarDocenteCUAdapter implements GestionarDocenteCUIntPort {
     private final GestionarDocenteGatewayIntPort objGestionarDocenteGateway;
@@ -28,4 +29,8 @@ public class GestionarDocenteCUAdapter implements GestionarDocenteCUIntPort {
         return this.objGestionarDocenteGateway.obtenerDocentes(nombre_grupo);
     }
     
+    public List<Historico> listarMiembrosComite() {
+        return objGestionarDocenteGateway.listarMiembrosComite();
+    }
+
 }

@@ -112,4 +112,17 @@ public class GestionarObservacionCUAdapter implements GestionarObservacionCUIntP
         return this.objGestionarObservacionGateway.guardarObservacion(objObservacion);
     }
 
+    @Override
+    public FormatoA obtenerFormatoConObservacionesPorId(Integer id_formato) {
+    
+        // Llamar al gateway
+        FormatoA formato = this.objGestionarObservacionGateway.obtenerFormatoAConObservaciones(id_formato);
+    
+        if (formato == null) {
+            throw new IllegalArgumentException("No se encontró el formato A con el ID: " + id_formato);
+        }
+    
+        return formato;
+    }
+
 }
