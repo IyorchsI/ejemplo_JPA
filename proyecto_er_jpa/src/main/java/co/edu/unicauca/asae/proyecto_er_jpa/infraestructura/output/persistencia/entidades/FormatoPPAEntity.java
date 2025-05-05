@@ -1,5 +1,6 @@
 package co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.entidades;
 
+import java.util.Date;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -23,10 +24,10 @@ public class FormatoPPAEntity extends FormatoAEntity {
 
     public FormatoPPAEntity(
             String titulo_formato, String objetivo_general, String objetivos_especificos,
-            String nombre_estudiante1, EstadoEntity objEstado, List<EvaluacionEntity> evaluaciones, 
+            String nombre_estudiante1,String codigo_estudiante1, Date fecha_registro, EstadoEntity objEstado, List<EvaluacionEntity> evaluaciones, 
             DocenteEntity objDocente, String nombre_asesor, String ruta_carta_aceptacion) {
 
-        super(titulo_formato, objetivo_general, objetivos_especificos, nombre_estudiante1,
+        super(titulo_formato, objetivo_general, objetivos_especificos, nombre_estudiante1, codigo_estudiante1, fecha_registro,
                 objEstado, evaluaciones, objDocente);
 
         this.nombre_asesor = nombre_asesor;

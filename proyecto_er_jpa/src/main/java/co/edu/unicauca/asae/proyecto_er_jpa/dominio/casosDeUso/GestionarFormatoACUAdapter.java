@@ -172,4 +172,18 @@ public class GestionarFormatoACUAdapter implements GestionarFormatoACUIntPort {
        return resultado;
     }
 
+    @Override
+    public List<FormatoA> buscarFormatoADocentePorFecha(Integer id_docente, Date fechaInicio, Date fechaFin) {
+        Docente docenteExistente = this.objGestionarFormatoAGateway.obtenerDocentePorId(id_docente);
+            List<FormatoA> resultado = null;
+    
+            if (docenteExistente != null) {
+                resultado = this.objGestionarFormatoAGateway.buscarFormatoADocentePorFecha(id_docente, fechaInicio, fechaFin);
+            }
+
+        
+        
+       return resultado;
+    }
+
 }

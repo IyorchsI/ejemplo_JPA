@@ -1,5 +1,6 @@
 package co.edu.unicauca.asae.proyecto_er_jpa.aplicacion.input;
 
+import java.util.Date;
 import java.util.List;
 
 import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.FormatoA;
@@ -20,6 +21,9 @@ public interface GestionarFormatoACUIntPort {
 
 
     public List<FormatoA> buscarFormatoAporDocente(Integer id_docente);
+
+
+    public List<FormatoA> buscarFormatoADocentePorFecha(Integer id_docente, Date fechaInicio, Date fechaFin);
 
 
 

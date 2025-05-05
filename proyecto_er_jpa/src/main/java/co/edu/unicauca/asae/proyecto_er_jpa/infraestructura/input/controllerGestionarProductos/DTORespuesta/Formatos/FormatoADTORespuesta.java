@@ -1,5 +1,6 @@
 package co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTORespuesta.Formatos;
 
+import java.util.Date;
 import java.util.List;
 
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTORespuesta.Evaluacion.EvaluacionDTORespuesta;
@@ -19,6 +20,8 @@ public class FormatoADTORespuesta {
     private String objetivo_general;
     private String objetivos_especificos;
     private String nombre_estudiante1;
+    private String codigo_estudiante1;
+    private Date fecha_registro;
     private String estado_actual;
     private String nombres_docente;
     private List<EvaluacionDTORespuesta> evaluaciones;

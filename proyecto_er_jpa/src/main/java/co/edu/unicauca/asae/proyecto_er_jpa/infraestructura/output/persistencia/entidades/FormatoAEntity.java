@@ -1,6 +1,7 @@
 package co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.entidades;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -43,6 +44,12 @@ public class FormatoAEntity {
     @Column(nullable = false, length = 100)
     private String nombre_estudiante1;
 
+    @Column(nullable = false, length = 12)
+    private String codigo_estudiante1;
+
+    @Column(nullable = false)
+    private Date fecha_registro;
+
     @OneToOne(fetch = FetchType.EAGER, cascade = { CascadeType.REMOVE, CascadeType.PERSIST }, mappedBy = "objFormatoA")
     private EstadoEntity objEstado;
 
@@ -58,7 +65,7 @@ public class FormatoAEntity {
     }
 
     public FormatoAEntity(String titulo_formato, String objetivo_general, String objetivos_especificos,
-            String nombre_estudiante1, EstadoEntity objEstado, List<EvaluacionEntity> evaluaciones, DocenteEntity objDocente) {
+            String nombre_estudiante1,String codigo_estudiante1, Date fecha_registro, EstadoEntity objEstado, List<EvaluacionEntity> evaluaciones, DocenteEntity objDocente) {
         this.titulo_formato = titulo_formato;
         this.objetivo_general = objetivo_general;
         this.objetivos_especificos = objetivos_especificos;
@@ -66,5 +73,7 @@ public class FormatoAEntity {
         this.objEstado = objEstado;
         this.evaluaciones = evaluaciones;
         this.objDocente = objDocente;
+        this.codigo_estudiante1 = codigo_estudiante1;
+        this.fecha_registro=fecha_registro;
     }
 }

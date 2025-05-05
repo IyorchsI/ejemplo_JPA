@@ -18,7 +18,7 @@ public interface FormatosRepositoryInt extends CrudRepository<FormatoAEntity, In
     @Query("SELECT f FROM FormatoAEntity f WHERE f.objDocente.id_docente=:id_docente")
     List<FormatoAEntity> obtenerConDocentePorId(@Param("id_docente") Integer id_docente);
 
-    //@Query("SELECT f FROM FormatoAEntity f WHERE f.objDocente.id_docente=:id_docente AND f.")
+    @Query("SELECT f FROM FormatoAEntity f WHERE f.objDocente.id_docente=:id_docente AND f.fecha_registro BETWEEN :fechaInicio AND :fechaFin")
     List<FormatoAEntity> obtenerConDocentePorIdFecha(Integer id_docente, Date fechaInicio, Date fechaFin);
 
     @Query("SELECT f FROM FormatoAEntity f WHERE f.id_formato = :id_formato")

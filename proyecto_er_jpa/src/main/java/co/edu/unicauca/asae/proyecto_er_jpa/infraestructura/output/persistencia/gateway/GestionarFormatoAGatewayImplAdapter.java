@@ -1,5 +1,6 @@
 package co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.gateway;
 
+import java.util.Date;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -138,8 +139,25 @@ public class GestionarFormatoAGatewayImplAdapter implements GestionarFormatoAGat
 
     @Override
     @Transactional(readOnly = true)
-    public List<FormatoA> obtenerFormatoAConDocentePorId(Integer id_formato) {
-        List<FormatoAEntity> formatosEntity = this.formatoARepository.obtenerConDocentePorId(id_formato);
+    public List<FormatoA> obtenerFormatoAConDocentePorId(Integer id_docente) {
+        List<FormatoAEntity> formatosEntity = this.formatoARepository.obtenerConDocentePorId(id_docente);
+        List<FormatoA> formatoa = null;
+        if (formatosEntity != null) {
+            formatoa = formatosEntity.stream().map(formatoEntity ->{
+                if(formatoEntity instanceof FormatoPPAEntity){
+                    return this.formatoAModelMapper.map(formatoEntity, FormatoPPA.class);
+                }else{
+                    return this.formatoAModelMapper.map(formatoEntity, FormatoTIA.class);
+                }
+                
+            }).toList();
+        }
+        return formatoa;
+    }
+
+    @Override
+    public List<FormatoA> buscarFormatoADocentePorFecha(Integer id_docente, Date fechaInicio, Date fechaFin) {
+        List<FormatoAEntity> formatosEntity = this.formatoARepository.obtenerConDocentePorIdFecha(id_docente,fechaInicio,fechaFin);
         List<FormatoA> formatoa = null;
         if (formatosEntity != null) {
             formatoa = formatosEntity.stream().map(formatoEntity ->{
