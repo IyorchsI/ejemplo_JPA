@@ -2,9 +2,10 @@ package co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGes
 
 import java.util.Date;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 
 import jakarta.validation.constraints.Pattern;
@@ -38,7 +39,8 @@ public class FormatoADTOPeticion {
     @Pattern(message = "{FormatoA.codigo_estudiante1.pattern}", regexp = "^1046\\d{8}$")
     private String codigo_estudiante1;
 
-    @NotBlank(message = "{FormatoA.fecha_registro.empty}")
+    @NotNull(message = "{FormatoA.fecha_registro.empty}")
+    @PastOrPresent(message = "{Estado.fecha_registro_estado.past}")
     private Date fecha_registro;
 
     @NotNull(message = "{formatoA.id_docente.emply}")

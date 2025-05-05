@@ -119,7 +119,7 @@ public class GestionarObservacionCUAdapter implements GestionarObservacionCUIntP
         FormatoA formato = this.objGestionarObservacionGateway.obtenerFormatoAConObservaciones(id_formato);
     
         if (formato == null) {
-            throw new IllegalArgumentException("No se encontró el formato A con el ID: " + id_formato);
+            this.objFormateadorResultados.retornarRespuestaErrorEntidadExiste("No se encontró el formato A con el ID: " + id_formato);
         }
     
         return formato;

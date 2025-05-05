@@ -2,8 +2,8 @@ package co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGes
 
 import java.util.Date;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

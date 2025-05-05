@@ -6,10 +6,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 public class Observacion {
 
@@ -17,6 +15,10 @@ public class Observacion {
     private String observacion;
     private Date fecha_registro_observacion;
     private Evaluacion objEvaluacion;
-    private List<Docente> listaDocentes = new ArrayList<>();
+    private List<Docente> listaDocentes;
+
+    public Observacion (){
+        this.listaDocentes = new ArrayList<>();
+    }
 
 }
