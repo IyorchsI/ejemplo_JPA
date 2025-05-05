@@ -1,6 +1,7 @@
 package co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.controladores;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -53,7 +54,7 @@ public class ObservacionRestController {
 
     // Punto 3. LISTAR OBSERVACIONES COMPLETAS //
     @GetMapping("/observaciones/{id_formato}")
-    public ResponseEntity<ObservacionConsultaDTORespuesta> listarObservacionesPorFormato(@PathVariable("id_formato") Integer id_formato) {
+    public ResponseEntity<ObservacionConsultaDTORespuesta> listarObservacionesPorFormato(@Min(value = 1) @PathVariable Integer id_formato) {
 
         // Obtener el formato con evaluaciones y observaciones
         FormatoA formato = objGestionarObservacionCUInt.obtenerFormatoConObservacionesPorId(id_formato);

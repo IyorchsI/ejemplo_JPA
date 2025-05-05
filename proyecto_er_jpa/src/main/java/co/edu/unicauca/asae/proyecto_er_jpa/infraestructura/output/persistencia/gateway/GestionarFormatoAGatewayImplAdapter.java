@@ -62,6 +62,8 @@ public class GestionarFormatoAGatewayImplAdapter implements GestionarFormatoAGat
         // Obtener el objeto Docente del dominio
         Docente docenteDominio = formatoPPA.getObjDocente();
 
+        DocenteEntity docenteEntity = null;
+
         // Si el docente del dominio no es nullo y tiene id
         if (docenteDominio != null && docenteDominio.getId_docente() != null) {
             Integer id_docente = docenteDominio.getId_docente();
@@ -69,12 +71,17 @@ public class GestionarFormatoAGatewayImplAdapter implements GestionarFormatoAGat
             // Si existe el docente en la base de datos
             if (docenteRepository.existsById(id_docente)) {
                 // Asociar docente como entidad gestionada
-                DocenteEntity docenteEntity = docenteRepository.findById(id_docente)
+                docenteEntity = docenteRepository.findById(id_docente)
                         .orElseThrow(() -> new RuntimeException("Docente con ID " + id_docente + " no encontrado."));
-                formatoPPAEntity.setObjDocente(docenteEntity);
             } else {
-                throw new RuntimeException("El ID del docente fue proporcionado, pero no existe en la base de datos.");
+                docenteEntity= new DocenteEntity();
+                docenteEntity.setApellidos_docente(docenteDominio.getApellidos_docente());
+                docenteEntity.setCorreo(docenteDominio.getCorreo());
+                docenteEntity.setNombre_grupo(docenteDominio.getNombre_grupo());
+                docenteEntity.setNombres_docente(docenteDominio.getNombres_docente());
+
             }
+            formatoPPAEntity.setObjDocente(docenteEntity);
         }
 
         // Guardar el Formato PPA
@@ -95,6 +102,8 @@ public class GestionarFormatoAGatewayImplAdapter implements GestionarFormatoAGat
         // Obtener el objeto Docente del dominio
         Docente docenteDominio = formatoTIA.getObjDocente();
 
+        DocenteEntity docenteEntity = null;
+
         // Si el docente del dominio no es nullo y tiene id
         if (docenteDominio != null && docenteDominio.getId_docente() != null) {
             Integer id_docente = docenteDominio.getId_docente();
@@ -102,12 +111,17 @@ public class GestionarFormatoAGatewayImplAdapter implements GestionarFormatoAGat
             // Si existe el docente en la base de datos
             if (docenteRepository.existsById(id_docente)) {
                 // Asociar docente como entidad gestionada
-                DocenteEntity docenteEntity = docenteRepository.findById(id_docente)
+                docenteEntity = docenteRepository.findById(id_docente)
                         .orElseThrow(() -> new RuntimeException("Docente con ID " + id_docente + " no encontrado."));
                 formatoTIAEntity.setObjDocente(docenteEntity);
             } else {
-                throw new RuntimeException("El ID del docente fue proporcionado, pero no existe en la base de datos.");
+                docenteEntity= new DocenteEntity();
+                docenteEntity.setApellidos_docente(docenteDominio.getApellidos_docente());
+                docenteEntity.setCorreo(docenteDominio.getCorreo());
+                docenteEntity.setNombre_grupo(docenteDominio.getNombre_grupo());
+                docenteEntity.setNombres_docente(docenteDominio.getNombres_docente());
             }
+            formatoTIAEntity.setObjDocente(docenteEntity);
         }
 
         // Guardar el Formato TIA
@@ -122,7 +136,7 @@ public class GestionarFormatoAGatewayImplAdapter implements GestionarFormatoAGat
     @Transactional(readOnly = true)
     public Docente obtenerDocentePorId(Integer id_docente) {
         DocenteEntity docenteEntity = docenteRepository.findById(id_docente).orElse(null);
-        if (docenteEntity != null) {
+                if (docenteEntity != null) {
 
             return formatoAModelMapper.map(docenteEntity, Docente.class);
         }

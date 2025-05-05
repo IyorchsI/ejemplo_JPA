@@ -14,12 +14,11 @@ public interface FormatoTIAMapperInfraDominio {
 
     @Mapping(target = "id_formato", ignore = true)
     @Mapping(target = "objEstado", ignore = true)
-    @Mapping(target = "objDocente", ignore = true)
     @Mapping(target = "evaluaciones", ignore = true)
     FormatoTIA mappearDePeticionAFormatoTIA(FormatoTIADTOPeticion peticion);
 
     @Mapping(target = "estado_actual", source = "objEstado.estado_actual")
-    @Mapping(target = "nombres_docente", source = "objDocente.nombres_docente")
+    @Mapping(target = "objDocente", source = "objDocente")
     @Mapping(target = "evaluaciones", source = "evaluaciones")
     FormatoTIADTORespuesta mappearDeFormatoTIARespuesta(FormatoTIA formatoTIA);
 

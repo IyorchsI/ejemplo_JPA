@@ -3,6 +3,7 @@ package co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGes
 import java.util.Date;
 import java.util.List;
 
+import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTORespuesta.Docente.DocenteDTORespuesta;
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTORespuesta.Evaluacion.EvaluacionDTORespuesta;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,11 +22,11 @@ public class FormatoPPADTORespuesta extends FormatoADTORespuesta {
     public FormatoPPADTORespuesta(Integer id_formato, String titulo_formato, String objetivo_general,
             String objetivos_especificos, String nombre_estudiante1, String codigo_estudiante1,
             Date fecha_registro, String estado_actual,
-            String nombres_docente,List<EvaluacionDTORespuesta> evaluaciones , String nombre_asesor, String ruta_carta_aceptacion) {
+            DocenteDTORespuesta objDocente,List<EvaluacionDTORespuesta> evaluaciones , String nombre_asesor, String ruta_carta_aceptacion) {
 
         super(id_formato, titulo_formato, objetivo_general, objetivos_especificos, nombre_estudiante1, codigo_estudiante1,
         fecha_registro, estado_actual,
-                nombres_docente, evaluaciones);
+        objDocente, evaluaciones);
         this.nombre_asesor = nombre_asesor;
         this.ruta_carta_aceptacion = ruta_carta_aceptacion;
         

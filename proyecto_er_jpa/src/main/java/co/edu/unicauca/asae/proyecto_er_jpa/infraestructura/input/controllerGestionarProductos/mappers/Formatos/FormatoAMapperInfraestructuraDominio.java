@@ -14,12 +14,11 @@ public interface FormatoAMapperInfraestructuraDominio {
 
     @Mapping(target = "id_formato", ignore = true)
     @Mapping(target = "objEstado", ignore = true)
-    @Mapping(target = "objDocente", ignore = true)
     @Mapping(target = "evaluaciones", ignore = true)
     FormatoA mappearDePeticionAFormatoA(FormatoADTOPeticion peticion);
 
     @Mapping(target = "estado_actual", source = "objEstado.estado_actual")
-    @Mapping(target = "nombres_docente", source = "objDocente.nombres_docente")
+    @Mapping(target = "objDocente", source = "objDocente")
     @Mapping(target = "evaluaciones", source = "evaluaciones")
     FormatoADTORespuesta mappearDeFormatoAARespuesta(FormatoA objFormatoA);
 

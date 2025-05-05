@@ -26,7 +26,7 @@ public class GestionarFormatoACUAdapter implements GestionarFormatoACUIntPort {
     // PUNTO 1. CREAR FORMATOA //
     // Permite Crear un formato PPA
     @Override
-    public FormatoPPA crearFormatoPPA(FormatoPPA  objFormatoPPA, Integer id_docente) {
+    public FormatoPPA crearFormatoPPA(FormatoPPA  objFormatoPPA, Docente objDocente) {
 
         // Objeto a retornar
         FormatoPPA objFormatoPPACreado = null;
@@ -38,12 +38,12 @@ public class GestionarFormatoACUAdapter implements GestionarFormatoACUIntPort {
         } else {
             
             // Validar que el id_docente no sea nulo
-            if (id_docente == null) {
+            if (objDocente.getId_docente() == null) {
                 throw new IllegalArgumentException("El ID del docente director no puede ser nulo.");
             }
     
             // Buscar el docente por su ID
-            Docente docenteExistente = this.objGestionarFormatoAGateway.obtenerDocentePorId(id_docente);
+            Docente docenteExistente = this.objGestionarFormatoAGateway.obtenerDocentePorId(objDocente.getId_docente());
     
             if (docenteExistente != null) {
 
@@ -53,11 +53,7 @@ public class GestionarFormatoACUAdapter implements GestionarFormatoACUIntPort {
             } else {
 
                 // Si el docente no existe, crear uno nuevo
-                Docente docenteNuevo = new Docente();
-                docenteNuevo.setNombres_docente("Oscar");
-                docenteNuevo.setApellidos_docente("Hernandez");
-                docenteNuevo.setNombre_grupo("Grupo 1");
-                docenteNuevo.setCorreo("oscarh@unicauca.edu.co");
+                Docente docenteNuevo = objDocente;
     
                 // Validar si el correo del docente ya existe en el sistema
                 if (this.objGestionarFormatoAGateway.existeDocentePorCorreo(docenteNuevo.getCorreo())) {
@@ -93,7 +89,7 @@ public class GestionarFormatoACUAdapter implements GestionarFormatoACUIntPort {
 
     // Permite Crear un formato TIA
     @Override
-    public FormatoTIA crearFormatoTIA(FormatoTIA objFormatoTIA, Integer id_docente) {
+    public FormatoTIA crearFormatoTIA(FormatoTIA objFormatoTIA, Docente objDocente) {
 
         // Objeto a retornar
         FormatoTIA objFormatoTIACreado = null;
@@ -105,12 +101,12 @@ public class GestionarFormatoACUAdapter implements GestionarFormatoACUIntPort {
         } else {
             
             // Validar que el id_docente no sea nulo
-            if (id_docente == null) {
+            if (objDocente.getId_docente() == null) {
                 throw new IllegalArgumentException("El ID del docente director no puede ser nulo.");
             }
     
             // Buscar el docente por su ID
-            Docente docenteExistente = this.objGestionarFormatoAGateway.obtenerDocentePorId(id_docente);
+            Docente docenteExistente = this.objGestionarFormatoAGateway.obtenerDocentePorId(objDocente.getId_docente());
     
             if (docenteExistente != null) {
 
@@ -120,11 +116,7 @@ public class GestionarFormatoACUAdapter implements GestionarFormatoACUIntPort {
             } else {
 
                 // Si el docente no existe, crear uno nuevo
-                Docente docenteNuevo = new Docente();
-                docenteNuevo.setNombres_docente("Camilo");
-                docenteNuevo.setApellidos_docente("Orozco");
-                docenteNuevo.setNombre_grupo("Grupo 1");
-                docenteNuevo.setCorreo("camiloo@unicauca.edu.co");
+                Docente docenteNuevo = objDocente;
     
                 // Validar si el correo del docente ya existe en el sistema
                 if (this.objGestionarFormatoAGateway.existeDocentePorCorreo(docenteNuevo.getCorreo())) {
@@ -175,14 +167,14 @@ public class GestionarFormatoACUAdapter implements GestionarFormatoACUIntPort {
     @Override
     public List<FormatoA> buscarFormatoADocentePorFecha(Integer id_docente, Date fechaInicio, Date fechaFin) {
         Docente docenteExistente = this.objGestionarFormatoAGateway.obtenerDocentePorId(id_docente);
-            List<FormatoA> resultado = null;
+        List<FormatoA> resultado = null;
     
             if (docenteExistente != null) {
                 resultado = this.objGestionarFormatoAGateway.buscarFormatoADocentePorFecha(id_docente, fechaInicio, fechaFin);
+            }else{
+                this.objFormateadorResultados.retornarRespuestaErrorReglaDeNegocio("No existe el id docente"+id_docente);
             }
 
-        
-        
        return resultado;
     }
 

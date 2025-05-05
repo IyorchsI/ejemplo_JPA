@@ -1,0 +1,376 @@
+{
+	"info": {
+		"_postman_id": "d966d76d-9a33-4aca-9a2e-f5611b775a37",
+		"name": "Hexagonal Formatos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21638757"
+	},
+	"item": [
+		{
+			"name": "FormatoPPA",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"titulo_formato\": \"titulo1\",\r\n        \"objetivo_general\": \"objetivo_general\",\r\n        \"objetivos_especificos\": \"objetivos_especificos\",\r\n        \"nombre_estudiante1\": \"nombre_estudiante1\",\r\n        \"codigo_estudiante1\": 104612345678,\r\n        \"fecha_registro\": \"2025-04-04\",\r\n        \"objDocente\": {\r\n            \"id_docente\": 1,\r\n            \"nombres_docente\": \"nombres_docente\",\r\n            \"apellidos_docente\": \"apellidos_docente\",\r\n            \"nombre_grupo\": \"nombre_grupo\",\r\n            \"correo\": \"correo@unicauca.edu.co\"\r\n        },\r\n        \"nombre_asesor\": \"nombre_asesor\",\r\n        \"ruta_carta_aceptacion\": \"ruta_carta_aceptacion\" \r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/api/formatos/ppa",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"formatos",
+						"ppa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FormatoTIA",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n        \"titulo_formato\": \"titulo2\",\r\n        \"objetivo_general\": \"objetivo_general\",\r\n        \"objetivos_especificos\": \"objetivos_especificos\",\r\n        \"nombre_estudiante1\": \"nombre_estudiante1\",\r\n        \"codigo_estudiante1\": 104612345678,\r\n        \"fecha_registro\": \"2025-05-04\",\r\n        \"objDocente\": {\r\n            \"id_docente\": 2,\r\n            \"nombres_docente\": \"nombres_docente\",\r\n            \"apellidos_docente\": \"apellidos_docente\",\r\n            \"nombre_grupo\": \"nombre_grupo\",\r\n            \"correo\": \"correo@unicauca.edu.co\"\r\n        },\r\n        \"nombre_estudiante2\": \"nombre_estudiante2\",\r\n        \"codigo_estudiante2\": 104612345678 \r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/api/formatos/tia",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"formatos",
+						"tia"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FormatoTIA Docente nuevo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n        \"titulo_formato\": \"titulo3\",\r\n        \"objetivo_general\": \"objetivo_general\",\r\n        \"objetivos_especificos\": \"objetivos_especificos\",\r\n        \"nombre_estudiante1\": \"nombre_estudiante1\",\r\n        \"codigo_estudiante1\": 104612345678,\r\n        \"fecha_registro\": \"2025-05-04\",\r\n        \"objDocente\": {\r\n            \"id_docente\": 18,\r\n            \"nombres_docente\": \"nombres_docente\",\r\n            \"apellidos_docente\": \"apellidos_docente\",\r\n            \"nombre_grupo\": \"nombre_grupo\",\r\n            \"correo\": \"correo@unicauca.edu.co\"\r\n        },\r\n        \"nombre_estudiante2\": \"nombre_estudiante2\",\r\n        \"codigo_estudiante2\": 104612345678 \r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/api/formatos/tia",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"formatos",
+						"tia"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FormatoPPA Titulo duplicado",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"titulo_formato\": \"titulo2\",\r\n        \"objetivo_general\": \"objetivo_general\",\r\n        \"objetivos_especificos\": \"objetivos_especificos\",\r\n        \"nombre_estudiante1\": \"nombre_estudiante1\",\r\n        \"codigo_estudiante1\": 104612345678,\r\n        \"fecha_registro\": \"2025-04-04\",\r\n        \"objDocente\": {\r\n            \"id_docente\": 1,\r\n            \"nombres_docente\": \"nombres_docente\",\r\n            \"apellidos_docente\": \"apellidos_docente\",\r\n            \"nombre_grupo\": \"nombre_grupo\",\r\n            \"correo\": \"correo@unicauca.edu.co\"\r\n        },\r\n        \"nombre_asesor\": \"nombre_asesor\",\r\n        \"ruta_carta_aceptacion\": \"ruta_carta_aceptacion\" \r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/api/formatos/ppa",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"formatos",
+						"ppa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FormatoPPA Correo duplicado",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"titulo_formato\": \"titulo8\",\r\n        \"objetivo_general\": \"objetivo_general\",\r\n        \"objetivos_especificos\": \"objetivos_especificos\",\r\n        \"nombre_estudiante1\": \"nombre_estudiante1\",\r\n        \"codigo_estudiante1\": 104612345678,\r\n        \"fecha_registro\": \"2025-04-04\",\r\n        \"objDocente\": {\r\n            \"id_docente\": 7,\r\n            \"nombres_docente\": \"nombres_docente\",\r\n            \"apellidos_docente\": \"apellidos_docente\",\r\n            \"nombre_grupo\": \"nombre_grupo\",\r\n            \"correo\": \"correo@unicauca.edu.co\"\r\n        },\r\n        \"nombre_asesor\": \"nombre_asesor\",\r\n        \"ruta_carta_aceptacion\": \"ruta_carta_aceptacion\" \r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/api/formatos/ppa",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"formatos",
+						"ppa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FormatoPPA Validaciones automátiicas",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"titulo_formato\": \"\",\r\n        \"objetivo_general\": \"objetivo_general\",\r\n        \"objetivos_especificos\": \"objetivos_especificos\",\r\n        \"nombre_estudiante1\": \"n\",\r\n        \"codigo_estudiante1\": 500012345678,\r\n        \"fecha_registro\": \"2025-04-04\",\r\n        \"objDocente\": {\r\n            \"id_docente\": 7,\r\n            \"nombres_docente\": \"nombres_docente\",\r\n            \"apellidos_docente\": \"apellidos_docente\",\r\n            \"nombre_grupo\": \"nombre_grupo\",\r\n            \"correo\": \"correo\"\r\n        },\r\n        \"nombre_asesor\": \"nombre_asesor\",\r\n        \"ruta_carta_aceptacion\": \"ruta_carta_aceptacion\" \r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/api/formatos/ppa",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"formatos",
+						"ppa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetFormatoPorDocenteID Auto",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/api/por-docente/0",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"por-docente",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Observacion",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"observacion\": \"observacion\",\r\n    \"id_formato\": 1,\r\n    \"ids_docentes\": [1,2]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/api/observaciones",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"observaciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Docentes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre_grupo\": \"grupo1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/api/docentes",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"docentes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Comite",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/api/comite",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"comite"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetFormatoPorDocenteID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/api/por-docente/1",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"por-docente",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetFormatoPorDocenteID No existe",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/api/por-docente/99",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"por-docente",
+						"99"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetFormatoDocenteFecha",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/api/por-docente-fecha/?idDocente=1&inicio=2025-04-01&fin=2025-05-04",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"por-docente-fecha",
+						""
+					],
+					"query": [
+						{
+							"key": "idDocente",
+							"value": "1"
+						},
+						{
+							"key": "inicio",
+							"value": "2025-04-01"
+						},
+						{
+							"key": "fin",
+							"value": "2025-05-04"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ObservacionFormato",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/api/observaciones/1",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"observaciones",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

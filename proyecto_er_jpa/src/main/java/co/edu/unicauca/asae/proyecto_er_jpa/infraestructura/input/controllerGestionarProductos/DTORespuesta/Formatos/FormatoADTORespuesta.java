@@ -3,6 +3,7 @@ package co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGes
 import java.util.Date;
 import java.util.List;
 
+import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTORespuesta.Docente.DocenteDTORespuesta;
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTORespuesta.Evaluacion.EvaluacionDTORespuesta;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,6 +24,6 @@ public class FormatoADTORespuesta {
     private String codigo_estudiante1;
     private Date fecha_registro;
     private String estado_actual;
-    private String nombres_docente;
+    private DocenteDTORespuesta objDocente;
     private List<EvaluacionDTORespuesta> evaluaciones;
 }

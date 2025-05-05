@@ -2,6 +2,7 @@ package co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGes
 
 import java.util.Date;
 
+import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTOPeticion.Docente.DocenteDTOFormatoPeticion;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
@@ -26,11 +27,11 @@ public class FormatoPPADTOPeticion extends FormatoADTOPeticion {
 
     public FormatoPPADTOPeticion(String titulo_formato, String objetivo_general, String objetivos_especificos,
             String nombre_estudiante1,String codigo_estudiante1,
-            Date fecha_registro, Integer id_docente,
+            Date fecha_registro, DocenteDTOFormatoPeticion objDocente,
             String nombre_asesor, String ruta_carta_aceptacion) {
 
         super(titulo_formato, objetivo_general, objetivos_especificos, nombre_estudiante1,codigo_estudiante1,
-        fecha_registro, id_docente);
+        fecha_registro, objDocente);
         this.nombre_asesor = nombre_asesor;
         this.ruta_carta_aceptacion = ruta_carta_aceptacion;
 

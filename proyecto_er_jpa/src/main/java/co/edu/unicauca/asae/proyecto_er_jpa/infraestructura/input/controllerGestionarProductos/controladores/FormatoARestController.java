@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -55,7 +56,7 @@ public class FormatoARestController {
         
         // Utiliza el Caso de Uso para crear el Formato y darle la persistencia
         FormatoPPA objPPAcreado = objGestionarFormatoACUInt.crearFormatoPPA(objPPAACrear,
-                objFormatoPPAPeticion.getId_docente());
+        objPPAACrear.getObjDocente());
 
         // Convertir Formato del dominio DTORespuesta al DTORespuesta
         ResponseEntity<FormatoPPADTORespuesta> objRespuesta = new ResponseEntity<FormatoPPADTORespuesta>(
@@ -75,7 +76,7 @@ public class FormatoARestController {
         
         // Utiliza el Caso de Uso para crear el Formato y darle la persistencia
         FormatoTIA objTIAcreado = objGestionarFormatoACUInt.crearFormatoTIA(objTIAACrear,
-                objFormatoTIAPeticion.getId_docente());
+        objTIAACrear.getObjDocente());
 
         // Convertir Formato del dominio DTORespuesta al DTORespuesta
         ResponseEntity<FormatoTIADTORespuesta> objRespuesta = new ResponseEntity<FormatoTIADTORespuesta>(
@@ -88,7 +89,7 @@ public class FormatoARestController {
 
       @GetMapping("/por-docente/{idDocente}")
       public ResponseEntity<List<FormatoADTORespuesta>>
-      consultarPorDocente(@PathVariable Integer idDocente) {
+      consultarPorDocente(@Min(value = 1) @PathVariable Integer idDocente) {
       List<FormatoA> formatos = objGestionarFormatoACUInt.buscarFormatoAporDocente(idDocente);
       List<FormatoADTORespuesta> formatosRespuesta = new ArrayList<FormatoADTORespuesta>();
       for (FormatoA formato : formatos){
