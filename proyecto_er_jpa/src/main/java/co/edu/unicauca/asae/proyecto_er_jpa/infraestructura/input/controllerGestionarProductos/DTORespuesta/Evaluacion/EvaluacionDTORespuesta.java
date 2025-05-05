@@ -17,5 +17,5 @@ public class EvaluacionDTORespuesta {
     private String concepto;
     private Date fecha_registro_concepto;
     private List<ObservacionDTORespuesta> observaciones;
-    
+
 }

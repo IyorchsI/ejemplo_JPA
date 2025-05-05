@@ -8,11 +8,9 @@ import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.FormatoA;
 import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.Observacion;
 
 public interface GestionarObservacionCUIntPort {
-    
-    // Servicios REST solicitados //
 
-    // 2. Crear Observación
-    public Observacion crearObservacion(Observacion objObservacion, List<@NotNull Integer> ids_docentes, Integer id_formato);
+    public Observacion crearObservacion(Observacion objObservacion, List<@NotNull Integer> ids_docentes,
+            Integer id_formato);
 
     FormatoA obtenerFormatoConObservacionesPorId(Integer id_formato);
 }

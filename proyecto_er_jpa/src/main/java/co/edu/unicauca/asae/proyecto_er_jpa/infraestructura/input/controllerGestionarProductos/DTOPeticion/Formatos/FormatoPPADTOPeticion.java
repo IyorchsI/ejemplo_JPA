@@ -26,12 +26,12 @@ public class FormatoPPADTOPeticion extends FormatoADTOPeticion {
     private String ruta_carta_aceptacion;
 
     public FormatoPPADTOPeticion(String titulo_formato, String objetivo_general, String objetivos_especificos,
-            String nombre_estudiante1,String codigo_estudiante1,
+            String nombre_estudiante1, String codigo_estudiante1,
             Date fecha_registro, DocenteDTOFormatoPeticion objDocente,
             String nombre_asesor, String ruta_carta_aceptacion) {
 
-        super(titulo_formato, objetivo_general, objetivos_especificos, nombre_estudiante1,codigo_estudiante1,
-        fecha_registro, objDocente);
+        super(titulo_formato, objetivo_general, objetivos_especificos, nombre_estudiante1, codigo_estudiante1,
+                fecha_registro, objDocente);
         this.nombre_asesor = nombre_asesor;
         this.ruta_carta_aceptacion = ruta_carta_aceptacion;
 

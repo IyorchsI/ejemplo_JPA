@@ -18,7 +18,6 @@ import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGest
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.mappers.Docente.DocenteMapperInfraDominio;
 import org.springframework.web.bind.annotation.GetMapping;
 
-
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
@@ -31,8 +30,10 @@ public class DocenteRestController {
     private final DocenteMapperInfraDominio objMapeadorDocente;
 
     @GetMapping("/docentes")
-    public ResponseEntity<List<DocenteDTORespuesta>> listarDocentes( @RequestBody @Valid DocenteDTOPeticion objDocentePeticion) {
-        List<Docente> docentes = objGestionarDocenteCUInt.obtenerDocentesSolicitados(objDocentePeticion.getNombre_grupo());     
+    public ResponseEntity<List<DocenteDTORespuesta>> listarDocentes(
+            @RequestBody @Valid DocenteDTOPeticion objDocentePeticion) {
+        List<Docente> docentes = objGestionarDocenteCUInt
+                .obtenerDocentesSolicitados(objDocentePeticion.getNombre_grupo());
 
         List<DocenteDTORespuesta> respuesta = objMapeadorDocente.mappearDeDocenteARespuesta(docentes);
 
@@ -46,5 +47,5 @@ public class DocenteRestController {
         List<MiembroComiteDTORespuesta> respuesta = objMapeadorDocente.mappearMiembrosComite(historicos);
         return ResponseEntity.ok(respuesta);
     }
-        
+
 }

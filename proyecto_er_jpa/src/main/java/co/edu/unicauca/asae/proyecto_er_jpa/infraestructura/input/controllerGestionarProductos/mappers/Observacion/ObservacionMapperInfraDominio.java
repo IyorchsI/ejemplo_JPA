@@ -16,10 +16,11 @@ import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGest
 
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.mappers.Formatos.FormatoAMapperInfraestructuraDominio;
 
-@Mapper(componentModel = "spring", uses = {DocenteResumenMapper.class, FormatoAMapperInfraestructuraDominio.class})
+@Mapper(componentModel = "spring", uses = { DocenteResumenMapper.class, FormatoAMapperInfraestructuraDominio.class })
 public interface ObservacionMapperInfraDominio {
-    
-    // Convierte un DTO de petición en una entidad de dominio, ignorando los campos establecidos desde la lógica
+
+    // Convierte un DTO de petición en una entidad de dominio, ignorando los campos
+    // establecidos desde la lógica
     @Mapping(target = "id_observacion", ignore = true)
     @Mapping(target = "objEvaluacion", ignore = true)
     @Mapping(target = "listaDocentes", ignore = true)

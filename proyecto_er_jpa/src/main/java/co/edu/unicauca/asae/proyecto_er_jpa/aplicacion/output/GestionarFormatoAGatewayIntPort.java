@@ -10,8 +10,6 @@ import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.FormatoTIA;
 
 public interface GestionarFormatoAGatewayIntPort {
 
-    // Servicios REST solicitados//
-
     // 1. Crear formato A.
     // Verifica si ya existe un formato A con el mismo título
     boolean existeFormatoAConTitulo(String titulo);
@@ -30,7 +28,7 @@ public interface GestionarFormatoAGatewayIntPort {
 
     // Obtener un formato por id
     List<FormatoA> obtenerFormatoAConDocentePorId(Integer id_formato);
-    
+
     List<FormatoA> buscarFormatoADocentePorFecha(Integer id_docente, Date fechaInicio, Date fechaFin);
 
 }

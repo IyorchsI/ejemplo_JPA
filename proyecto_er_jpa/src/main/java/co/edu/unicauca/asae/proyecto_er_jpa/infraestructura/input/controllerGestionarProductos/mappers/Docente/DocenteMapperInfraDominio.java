@@ -13,7 +13,7 @@ import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGest
 
 @Mapper(componentModel = "spring")
 public interface DocenteMapperInfraDominio {
-    
+
     @Mapping(target = "id_docente", ignore = true)
     @Mapping(target = "nombres_docente", ignore = true)
     @Mapping(target = "apellidos_docente", ignore = true)

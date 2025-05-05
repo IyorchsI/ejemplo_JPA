@@ -8,7 +8,6 @@ import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.FormatoA;
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTOPeticion.Formatos.FormatoADTOPeticion;
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTORespuesta.Formatos.FormatoADTORespuesta;
 
-
 @Mapper(componentModel = "spring")
 public interface FormatoAMapperInfraestructuraDominio {
 
@@ -23,6 +22,5 @@ public interface FormatoAMapperInfraestructuraDominio {
     FormatoADTORespuesta mappearDeFormatoAARespuesta(FormatoA objFormatoA);
 
     List<FormatoADTORespuesta> mappearDeFormatosAARespuesta(List<FormatoA> formatosA);
-    
-    
+
 }

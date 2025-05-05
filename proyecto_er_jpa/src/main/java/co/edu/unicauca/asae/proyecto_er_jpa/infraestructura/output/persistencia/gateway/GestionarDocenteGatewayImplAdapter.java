@@ -32,38 +32,37 @@ public class GestionarDocenteGatewayImplAdapter implements GestionarDocenteGatew
         this.historicoRepository = historicoRepository;
         this.docenteRepository = docenteRepository;
         this.docenteModelMapper = docenteModelMapper;
-            }
+    }
 
     @Override
     @Transactional(readOnly = true)
     public boolean existenDocentesRegistrados() {
-        
+
         return docenteRepository.existenDocentes() > 0;
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<Docente> obtenerDocentes(String nombre_grupo) {
-        //List<DocenteEntity> docentesEntity = docenteRepository.findByNombre_grupoIgnoreCaseOrderByApellidos_docenteASC(nombre_grupo);
-        
+
         List<DocenteEntity> docentesEntity = docenteRepository.buscarPorNombreGrupoOrdenadoPorApellido(nombre_grupo);
         List<Docente> docentes = null;
         if (docentesEntity != null) {
 
-            docentes = docentesEntity.stream().map(docenteEntity ->{
+            docentes = docentesEntity.stream().map(docenteEntity -> {
                 return this.docenteModelMapper.map(docenteEntity, Docente.class);
             }).toList();
         }
-		
+
         return docentes;
     }
-    
+
     public List<Historico> listarMiembrosComite() {
         Iterable<HistoricoEntity> historicosEntityIterable = historicoRepository.findAll();
 
         List<HistoricoEntity> historicosEntity = StreamSupport
-            .stream(historicosEntityIterable.spliterator(), false)
-            .collect(Collectors.toList());
+                .stream(historicosEntityIterable.spliterator(), false)
+                .collect(Collectors.toList());
 
         List<Historico> historicos = new ArrayList<>();
         for (HistoricoEntity entity : historicosEntity) {

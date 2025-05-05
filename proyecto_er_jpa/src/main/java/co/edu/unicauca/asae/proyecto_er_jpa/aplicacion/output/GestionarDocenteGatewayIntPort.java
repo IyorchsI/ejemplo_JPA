@@ -6,12 +6,11 @@ import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.Docente;
 import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.Historico;
 
 public interface GestionarDocenteGatewayIntPort {
-    //Docentes
-    boolean existenDocentesRegistrados();    
-    //Listar docente
-    List<Docente> obtenerDocentes(String nombre_grupo);
+    // Docentes
+    boolean existenDocentesRegistrados();
 
-    // Servicios REST solicitados//
+    // Listar docente
+    List<Docente> obtenerDocentes(String nombre_grupo);
 
     // 4. Listar miembros del comité
     public List<Historico> listarMiembrosComite();

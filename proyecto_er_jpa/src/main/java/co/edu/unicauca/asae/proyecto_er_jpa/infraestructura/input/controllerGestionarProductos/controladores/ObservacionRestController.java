@@ -42,27 +42,31 @@ public class ObservacionRestController {
         Observacion observacionACrear = objMapeadorObservacion.mappearDePeticionAObservacion(objObservacionPeticion);
 
         // Ejecutar caso de uso
-        Observacion observacionCreada = objGestionarObservacionCUInt.crearObservacion(observacionACrear, objObservacionPeticion.getIds_docentes(), objObservacionPeticion.getId_formato());
+        Observacion observacionCreada = objGestionarObservacionCUInt.crearObservacion(observacionACrear,
+                objObservacionPeticion.getIds_docentes(), objObservacionPeticion.getId_formato());
 
         // Mapear modelo de dominio a DTO respuesta
         ResponseEntity<ObservacionDTORespuesta> objRespuesta = new ResponseEntity<ObservacionDTORespuesta>(
-            objMapeadorObservacion.mappearDeObservacionARespuesta(observacionCreada), HttpStatus.CREATED);
-        
+                objMapeadorObservacion.mappearDeObservacionARespuesta(observacionCreada), HttpStatus.CREATED);
+
         // Retornar la respuesta
         return objRespuesta;
     }
 
     // Punto 3. LISTAR OBSERVACIONES COMPLETAS //
     @GetMapping("/observaciones/{id_formato}")
-    public ResponseEntity<ObservacionConsultaDTORespuesta> listarObservacionesPorFormato(@Min(value = 1) @PathVariable Integer id_formato) {
+    public ResponseEntity<ObservacionConsultaDTORespuesta> listarObservacionesPorFormato(
+            @Min(value = 1) @PathVariable Integer id_formato) {
 
         // Obtener el formato con evaluaciones y observaciones
         FormatoA formato = objGestionarObservacionCUInt.obtenerFormatoConObservacionesPorId(id_formato);
 
         // Mapear modelo de dominio a DTO respuesta
-        ObservacionConsultaDTORespuesta dtoRespuesta = objMapeadorObservacion.mappearDeFormatoAConsultaRespuesta(formato);
-        
-        ResponseEntity<ObservacionConsultaDTORespuesta> objRespuesta = new ResponseEntity<>(dtoRespuesta, HttpStatus.OK);
+        ObservacionConsultaDTORespuesta dtoRespuesta = objMapeadorObservacion
+                .mappearDeFormatoAConsultaRespuesta(formato);
+
+        ResponseEntity<ObservacionConsultaDTORespuesta> objRespuesta = new ResponseEntity<>(dtoRespuesta,
+                HttpStatus.OK);
 
         // Retornar la respuesta
         return objRespuesta;

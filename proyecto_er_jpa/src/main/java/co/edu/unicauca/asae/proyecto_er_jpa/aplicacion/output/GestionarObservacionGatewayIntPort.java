@@ -8,7 +8,7 @@ import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.FormatoA;
 import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.Observacion;
 
 public interface GestionarObservacionGatewayIntPort {
-    
+
     // Obtener la última evaluación asociada a un Formato A
     Integer obtenerUltimaEvaluacionPorFormatoA(Integer id_formato);
 
@@ -22,7 +22,7 @@ public interface GestionarObservacionGatewayIntPort {
     Observacion guardarObservacion(Observacion observacion);
 
     // Guardar una evaluación
-    public Evaluacion guardarEvaluacion(Evaluacion evaluacion);
+    Evaluacion guardarEvaluacion(Evaluacion evaluacion);
 
     // Permite listas las observaciones por medio del id del Formato A
     FormatoA obtenerFormatoAConObservaciones(Integer id_formato);

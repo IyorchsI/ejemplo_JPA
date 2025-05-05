@@ -1,6 +1,5 @@
 package co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTOPeticion.Formatos;
 
-
 import java.util.Date;
 
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.input.controllerGestionarProductos.DTOPeticion.Docente.DocenteDTOFormatoPeticion;
@@ -17,7 +16,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class FormatoTIADTOPeticion extends FormatoADTOPeticion{
+public class FormatoTIADTOPeticion extends FormatoADTOPeticion {
 
     @NotBlank(message = "{formatoTIA.nombreEstudiante2.empty}")
     @Size(max = 100, message = "{formatoTIA.nombreEstudiante2.size}")
@@ -28,14 +27,15 @@ public class FormatoTIADTOPeticion extends FormatoADTOPeticion{
     private String codigo_estudiante2;
 
     public FormatoTIADTOPeticion(String titulo_formato, String objetivo_general, String objetivos_especificos,
-                                 String nombre_estudiante1,String codigo_estudiante1,
-            Date fecha_registro, DocenteDTOFormatoPeticion objDocente, String nombre_estudiante2, String codigo_estudiante2) {
+            String nombre_estudiante1, String codigo_estudiante1,
+            Date fecha_registro, DocenteDTOFormatoPeticion objDocente, String nombre_estudiante2,
+            String codigo_estudiante2) {
 
-        super(titulo_formato, objetivo_general, objetivos_especificos, nombre_estudiante1,codigo_estudiante1,
-        fecha_registro, objDocente);
+        super(titulo_formato, objetivo_general, objetivos_especificos, nombre_estudiante1, codigo_estudiante1,
+                fecha_registro, objDocente);
         this.nombre_estudiante2 = nombre_estudiante2;
-        this.codigo_estudiante2=codigo_estudiante2;
-        
+        this.codigo_estudiante2 = codigo_estudiante2;
+
     }
-    
+
 }

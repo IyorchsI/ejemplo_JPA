@@ -9,23 +9,13 @@ import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.FormatoPPA;
 import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.FormatoTIA;
 
 public interface GestionarFormatoACUIntPort {
-    
-    // Servicios REST solicitados //
 
-    // 1. Crear formato A
+    public FormatoPPA crearFormatoPPA(FormatoPPA objFormatoPPA, Docente objDocente);
 
-    // Tipo PP
-    public FormatoPPA crearFormatoPPA(FormatoPPA  objFormatoPPA, Docente objDocente);
-
-    // Tipo TI
     public FormatoTIA crearFormatoTIA(FormatoTIA objFormatoTIA, Docente objDocente);
-
 
     public List<FormatoA> buscarFormatoAporDocente(Integer id_docente);
 
-
     public List<FormatoA> buscarFormatoADocentePorFecha(Integer id_docente, Date fechaInicio, Date fechaFin);
-
-
 
 }

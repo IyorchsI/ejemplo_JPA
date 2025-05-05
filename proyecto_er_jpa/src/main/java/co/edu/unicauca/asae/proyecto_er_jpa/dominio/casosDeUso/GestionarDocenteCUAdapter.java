@@ -21,14 +21,14 @@ public class GestionarDocenteCUAdapter implements GestionarDocenteCUIntPort {
     @Override
     public List<Docente> obtenerDocentesSolicitados(String nombre_grupo) {
 
-        if(!this.objGestionarDocenteGateway.existenDocentesRegistrados()){
+        if (!this.objGestionarDocenteGateway.existenDocentesRegistrados()) {
             this.objFormateadorResultados.retornarRespuestaErrorEntidadExiste(
                     "Error, no se encuentran docentes ");
         }
 
         return this.objGestionarDocenteGateway.obtenerDocentes(nombre_grupo);
     }
-    
+
     public List<Historico> listarMiembrosComite() {
         return objGestionarDocenteGateway.listarMiembrosComite();
     }

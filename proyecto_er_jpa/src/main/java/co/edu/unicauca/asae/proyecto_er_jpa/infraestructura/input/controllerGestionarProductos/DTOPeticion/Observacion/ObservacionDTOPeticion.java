@@ -16,7 +16,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ObservacionDTOPeticion {
-    
+
     @NotBlank(message = "{observacion.observacion.emply}")
     private String observacion;
 

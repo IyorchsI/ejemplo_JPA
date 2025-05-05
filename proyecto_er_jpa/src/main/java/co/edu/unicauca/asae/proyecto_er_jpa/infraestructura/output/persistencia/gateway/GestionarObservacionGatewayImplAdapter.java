@@ -20,23 +20,21 @@ import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.respositorios.EvaluacionesRepositoryInt;
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.respositorios.ObservacionesRepositoryInt;
 
-
 import co.edu.unicauca.asae.proyecto_er_jpa.dominio.modelos.FormatoA;
 
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.entidades.FormatoAEntity;
 
 import co.edu.unicauca.asae.proyecto_er_jpa.infraestructura.output.persistencia.respositorios.FormatosRepositoryInt;
 
-
 @Service
 @Transactional
-public class GestionarObservacionGatewayImplAdapter implements GestionarObservacionGatewayIntPort{
+public class GestionarObservacionGatewayImplAdapter implements GestionarObservacionGatewayIntPort {
 
     // Repositorios
     private final ObservacionesRepositoryInt observacionRepository;
     private final EvaluacionesRepositoryInt evaluacionRepository;
     private final DocentesRepositoryInt docenteRepository;
-    private final FormatosRepositoryInt formatoARepository;        
+    private final FormatosRepositoryInt formatoARepository;
 
     // ModelMappers
     private final ModelMapper formatoAModelMapper;
@@ -69,11 +67,11 @@ public class GestionarObservacionGatewayImplAdapter implements GestionarObservac
         try {
             EvaluacionEntity entity = formatoAModelMapper.map(evaluacion, EvaluacionEntity.class);
             entity.setFecha_registro_concepto(new Date());
-    
+
             System.out.println("--INTENTA GUARDAR LA EVALUACION--");
             EvaluacionEntity saved = evaluacionRepository.save(entity);
             System.out.println("--CREO LA EVALUACION Y LA GUARDO--");
-    
+
             return formatoAModelMapper.map(saved, Evaluacion.class);
         } catch (Exception e) {
             System.out.println("--ERROR AL GUARDAR EVALUACION--");
@@ -92,7 +90,7 @@ public class GestionarObservacionGatewayImplAdapter implements GestionarObservac
     @Transactional(readOnly = true)
     public Evaluacion obtenerEvaluacionPorId(Integer id_evaluacion) {
         EvaluacionEntity entity = evaluacionRepository.findById(id_evaluacion)
-            .orElseThrow(() -> new RuntimeException("Evaluación no encontrada con ID: " + id_evaluacion));
+                .orElseThrow(() -> new RuntimeException("Evaluación no encontrada con ID: " + id_evaluacion));
         return formatoAModelMapper.map(entity, Evaluacion.class);
     }
 
@@ -108,17 +106,17 @@ public class GestionarObservacionGatewayImplAdapter implements GestionarObservac
     @Override
     @Transactional(readOnly = true)
     public FormatoA obtenerFormatoAConObservaciones(Integer id_formato) {
-    
-        Optional<FormatoAEntity> formatoEntityOptional =
-            this.formatoARepository.findFormatoAConRelacionesCompletas(id_formato);
-    
+
+        Optional<FormatoAEntity> formatoEntityOptional = this.formatoARepository
+                .findFormatoAConRelacionesCompletas(id_formato);
+
         if (formatoEntityOptional.isEmpty()) {
             System.out.println("--NO SE ENCONTRO FORMATO A--");
             return null;
         }
-    
+
         FormatoA formato = formatoAModelMapper.map(formatoEntityOptional.get(), FormatoA.class);
-    
+
         return formato;
     }
 

@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -24,7 +25,7 @@ public class DocenteDTOFormatoPeticion {
     @Size(max = 50, message = "{Docente.nombre_grupo.lenght}")
     private String nombre_grupo;
     @NotBlank(message = "{Docente.correo.empty}")
-    @Email(message = "{Docente.correo.mask}")    
+    @Email(message = "{Docente.correo.mask}")
     private String correo;
-    
+
 }

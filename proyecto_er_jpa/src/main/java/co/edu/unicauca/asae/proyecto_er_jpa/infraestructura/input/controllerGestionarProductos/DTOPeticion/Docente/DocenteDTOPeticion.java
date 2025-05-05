@@ -17,5 +17,5 @@ public class DocenteDTOPeticion {
     @NotBlank(message = "{Docente.nombre_grupo.empty}")
     @Size(max = 50, message = "{Docente.nombre_grupo.lenght}")
     private String nombre_grupo;
-    
+
 }
