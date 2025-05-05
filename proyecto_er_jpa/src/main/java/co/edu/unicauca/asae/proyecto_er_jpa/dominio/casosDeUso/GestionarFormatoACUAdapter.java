@@ -159,6 +159,12 @@ public class GestionarFormatoACUAdapter implements GestionarFormatoACUIntPort {
 
         if (docenteExistente != null) {
             resultado = this.objGestionarFormatoAGateway.obtenerFormatoAConDocentePorId(id_docente);
+        }else {
+            this.objFormateadorResultados.retornarRespuestaErrorReglaDeNegocio("No existe el docente con ID: "+ id_docente);
+        }
+
+        if(resultado.isEmpty()){
+            this.objFormateadorResultados.retornarRespuestaErrorReglaDeNegocio("No existe un Formato A asociado al docente.");
         }
 
         return resultado;
@@ -173,7 +179,7 @@ public class GestionarFormatoACUAdapter implements GestionarFormatoACUIntPort {
             resultado = this.objGestionarFormatoAGateway.buscarFormatoADocentePorFecha(id_docente, fechaInicio,
                     fechaFin);
         } else {
-            this.objFormateadorResultados.retornarRespuestaErrorReglaDeNegocio("No existe el id docente" + id_docente);
+            this.objFormateadorResultados.retornarRespuestaErrorReglaDeNegocio("No existe el docente con ID: "+ id_docente);
         }
 
         return resultado;

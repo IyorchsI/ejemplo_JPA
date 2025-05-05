@@ -75,7 +75,7 @@ public class GestionarObservacionGatewayImplAdapter implements GestionarObservac
             return formatoAModelMapper.map(saved, Evaluacion.class);
         } catch (Exception e) {
             System.out.println("--ERROR AL GUARDAR EVALUACION--");
-            e.printStackTrace(); // para que veas el detalle
+            e.printStackTrace();
             throw e;
         }
     }
